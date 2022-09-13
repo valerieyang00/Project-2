@@ -5,6 +5,7 @@ const ejsLayouts = require('express-ejs-layouts')
 const cookieParser = require('cookie-parser')
 const db = require('./models')
 const crypto = require('crypto-js')
+const axios = require('axios')
 
 // console.log('server secret:', process.env.ENC_SECRET)
 
@@ -38,9 +39,15 @@ app.use('/users', require('./controllers/users'))
 
 //route definitions
 app.get('/', (req, res) => {
-    // console.log('the current user is', res.locals.user)
-    res.render('home.ejs')
+    axios.get("http://www.boredapi.com/api/activity/")
+        .then(response => {
+            res.render('home.ejs', {activity: response.data})
+        })
+    
 })
+
+
+
 
 //listen on port
 app.listen(PORT, () => {
