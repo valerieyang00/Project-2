@@ -42,9 +42,9 @@ DELETE | recommendations/:activityId  | DESTROY | delete recommendation | user c
 * Create forms for users to post personal logs/reflections on each activity in progress/completed
 * Create forms for posting recommendations (for public feed) once user marks an activity as completed
 * Render 'recommendations' feed page where all users' recommendation posts are displayed. Add filter by category
-* Add comments section for each recommendation posted
 
 ## Stretch goals
+* Add comments section for each recommendation posted - create comment model 1:M to recommendations
 * Add social page where users can reach out to other users in the close by location for activities requiring multiple people (by using 'Participants' from API)
 * Add more functionality to social networking capabilities
 * Use another API (geoapify) for user to find eateries/things to do in selected location/area as bonus aspect in finding "what to do"
