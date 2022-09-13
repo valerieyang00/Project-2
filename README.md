@@ -1,7 +1,7 @@
 # ThisWeekend
 ## Description
 One of the hardest questions for me to answer has always been...what is your hobby?
-This app is for people like me who wants to have productive and eventful weekends full of activities, but always wind up binging on netflix because I simply never know what exactly to do.
+This app is for people like me who wants to have productive and eventful weekends full of activities, but always wind up binging on netflix because I simply don't know what exactly to do.
 I'll be integrating the Bored API (http://www.boredapi.com/api/activity/) to bring in random activities by category: ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"] and enable users to swipe through activities for inspiration and add items to their own todo list. 
 * This API does not require a key, and I've tested its functionality.
 
