@@ -18,7 +18,7 @@ I'll be integrating the Bored API (http://www.boredapi.com/api/activity/) to bri
 | GET | /profile | READ | user data | display user profile
 | POST | /saved | CREATE | saved activity | save activity user chose (redirect to /saved)
 POST | /saved/logs/ | CREATE | Add logs to each activity "in progress" | User can add and post Logs to activities they've marked as "in progress"
-POST | /saved/completed | CREATE | post activity to completed | user can mark activities as completed 
+GET | /saved/completed | READ | activity completed | user can view list of completed activities and have the option to select to write recommendations
 DELETE | /saved | DESTROY | delete saved | user can delete saved activity no longer wanted
 GET | /saved/recommendations | READ | user's recommendations | display recommendations by specific user
 POST | /recommendations/:activityId  | CREATE | post new recommendation | user can post new recommendation on completed activities
