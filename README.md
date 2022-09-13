@@ -37,7 +37,7 @@ DELETE | recommendations/:activityId  | DESTROY | delete recommendation | user c
 * As a user, I want to be able to connect with other users in my area 
 
 ## MVP goals
-* Render activities pulled from BORED API by category, add swipe functionality, and give user the option to pass or save on each 
+* Render activities pulled from Bored API by category, add swipe functionality, and give user the option to pass or save on each 
 * Add Delete function to each saved activity for user to destroy any items no longer wanted
 * Create forms for users to post personal logs/reflections on each activity in progress/completed
 * Create forms for posting recommendations (for public feed) once user marks an activity as completed
