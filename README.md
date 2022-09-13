@@ -27,6 +27,7 @@ DELETE | recommendations/:activityId  | DESTROY | delete recommendation | user c
 
 
 ## Wireframes
+![Wireframes](./wireframes/wireframes.png)
 
 ## User Stories
 * As a user, I want to choose which category I wish to explore for inspiration, and have the ability to swipe through activities and save ones I am interested in
@@ -45,6 +46,7 @@ DELETE | recommendations/:activityId  | DESTROY | delete recommendation | user c
 
 ## Stretch goals
 * Add social page where users can reach out to other users in the close by location for activities requiring multiple people (by using 'Participants' from API)
+* Add more functionality to social networking capabilities
 * Use another API (geoapify) for user to find eateries/things to do in selected location/area as bonus aspect in finding "what to do"
 
 
