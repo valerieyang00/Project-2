@@ -41,6 +41,7 @@ DELETE | recommendations/:activityId  | DESTROY | delete recommendation | user c
 * Add Delete function to each saved activity for user to destroy any items no longer wanted
 * Create forms for users to post personal logs/reflections on each activity in progress/completed
 * Display logs posted for each activity in progress or completed
+* Enable Edit/Update for logs posted
 
 ## Stretch goals
 * Create forms for posting recommendations (for public feed) once user marks an activity as completed
