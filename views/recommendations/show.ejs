@@ -1,10 +1,52 @@
 <h2>Recommendations Feed</h2>
 <a href="/recommendations/<%=user.id%>">click to view recommendations you posted</a>
 
-<% if(user) { %>
-    <% recs.forEach(rec => { %>
+<h5>Filter by Category:</h5>
+<% recs.forEach(rec => {%>
+    <h4>Education:</h4>
+   <% if(rec.activity.type === "education") { %>
         <h5><%= rec.title%> </h5>
-        <p><%= rec.content%></p>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Relaxation:</h4>
+   <% if(rec.activity.type === "relaxation") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Diy:</h4>
+   <% if(rec.activity.type === "diy") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Recreational:</h4>
+   <% if(rec.activity.type === "recreational") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Social:</h4>
+   <% if(rec.activity.type === "social") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Charity:</h4>
+   <% if(rec.activity.type === "charity") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Cooking:</h4>
+   <% if(rec.activity.type === "cooking") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Music:</h4>
+   <% if(rec.activity.type === "music") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+    <h4>Busywork:</h4>
+   <% if(rec.activity.type === "busywork") { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>   
+    <%}%>
+<%})%>
 
-
-    <%})}%>

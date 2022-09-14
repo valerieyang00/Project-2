@@ -8,9 +8,11 @@ router.use(methodOverride("_method"))
 
 router.get('/', async (req, res) => {
     try {
-        const recs = await db.recommendation.findAll()
-        res.render('recommendations/show.ejs', { recs: recs, user: res.locals.user })
-    } catch (err) {
+        const recs = await db.recommendation.findAll({
+            include: [db.activity]
+        })
+        res.render('recommendations/show.ejs', { recs: recs, user: res.locals.user})
+      } catch (err) {
         console.log(err)
         res.send('server error')
     }
@@ -50,13 +52,13 @@ router.post('/:userid/:activityid', async (req, res) => {
 
 router.get('/:userid', async (req, res) => {
     try {
-        const recommendations = await db.recommendation.findAll({
+        const recs = await db.recommendation.findAll({
             where: {
                 userId: req.params.userid
             },
             include: [db.activity]
         })
-        res.render('recommendations/user.ejs', { recommendations: recommendations, activity: recommendations.activity })
+        res.render('recommendations/user.ejs', { recs: recs, activity: recs.activity })
     } catch (err) {
         console.log(err)
         res.send('server error')
