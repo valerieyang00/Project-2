@@ -3,6 +3,8 @@ const router = express.Router()
 const db = require('../models')
 const crypto = require('crypto-js')
 const bcrypt = require('bcrypt')
+const methodOverride = require("method-override")
+router.use(methodOverride("_method"))
 
 //GET render a form to create new user
 router.get('/new', (req, res) => {
@@ -116,6 +118,35 @@ router.get('/profile', (req, res) => {
     }
 })
 
+router.get('/profile/:id', (req, res) => {
+    // if the user is not logged in, redirect to login form
+    if (!res.locals.user) {
+        res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource')
+    } else {
+        // otherwise, show them their profile
+        res.render('users/edit.ejs', {
+            user: res.locals.user
+        })
+    }
+})
+
+router.put('/profile/:id', async (req, res) => {
+    try {
+        const changes = await db.user.update({
+            name: req.body.username,
+            email: req.body.email,
+            city: req.body.city,
+            state: req.body.state,
+            photo: req.body.photo
+        }, {where: {
+            id: req.params.id
+        }})
+        res.redirect('/users/profile')
+    }catch(err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
 
 
 

@@ -1,0 +1,9 @@
+<form method="POST" action="/saved/logs/*/<%=log.id%>?_method=PUT">
+    <label>title</label>
+    <input value="<%=log.title%>" name="title">
+    <label>content</label>
+    <textarea value="<%=log.content%>" name="content">
+
+    <button type="submit">Submit Changes</button>
+</form>
+

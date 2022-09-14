@@ -1,9 +1,25 @@
 <h3>Log your progress for:</h3>
-<%= activity.activity %>
+<h4><%= activity.activity %></h4>
 
-
+<% logs.forEach(log => { %>
+    <h5>Title: <%=log.title%> (<%= moment(log.createdAt).calendar()%>):</h5>
+    <p><%=log.content%></p>
+    <a href="/saved/logs/*/<%=log.id%>">edit</a>
+<%})%>
 
 
 
 
 <h4>Add New:</h4>
+<form action="/saved/logs/<%=activity.id%>" method="POST">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea type="text" class="form-control" id="content" name="content" required></textarea>
+    </div>
+  
+    <input type="submit" class="btn btn-primary">
+  </form>

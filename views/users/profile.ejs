@@ -1,1 +1,10 @@
-<h2>Welcome to your Profile <%= user.name%>! 🎉</h2>
+<h2>Welcome <%= user.name%>!</h2>
+
+<img src="../<%=user.photo%>" alt="profileImg" width="300"/>
+<p>username: <%= user.name %></p>
+<p>email: <%= user.email %></p>
+<p>password: *******</p>
+<p>city: <%= user.city %></p>
+<p>state: <%= user.state %></p>
+
+<a href="/users/profile/<%=user.id%>">Edit Profile</a>

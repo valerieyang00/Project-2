@@ -6,8 +6,10 @@ const cookieParser = require('cookie-parser')
 const db = require('./models')
 const crypto = require('crypto-js')
 const axios = require('axios')
+const moment = require('moment')
 
 // console.log('server secret:', process.env.ENC_SECRET)
+
 
 //config express app/middlewares
 const app = express()
@@ -35,6 +37,12 @@ app.use(async (req, res, next) => {
     }
     next()
 })
+
+// middleware that allows us to access the 'moment' library in every EJS view
+app.use((req, res, next) => {
+    res.locals.moment = moment
+    next()
+  })
 
 //controllers set up
 app.use('/users', require('./controllers/users'))

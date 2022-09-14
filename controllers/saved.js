@@ -16,6 +16,16 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/completed', async (req, res) => {
+    try {
+        const saved = await db.activity.findAll()
+        res.render('activities/completed.ejs', { saved: saved })
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
 router.get('/logs/:id', async (req, res) => {
     try {
         const logs = await db.log.findAll({
@@ -29,6 +39,36 @@ router.get('/logs/:id', async (req, res) => {
             }
         })
         res.render('activities/logs.ejs', { logs: logs, activity: activity })
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
+router.post('/logs/:id', async (req, res) => {
+    try {
+        const newLog = await db.log.create({
+            activityId: req.params.id,
+            userId: res.locals.user.id,
+            title: req.body.title,
+            content: req.body.content           
+        })
+        res.redirect(`/saved/logs/${req.params.id}`)
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
+router.get('/logs/:id/:logid', async (req, res) => {
+    try {
+        console.log(req.params.logid)
+        const log = await db.log.findOne({
+            where: {
+                id: req.params.logid
+            }
+        })
+        res.render('activities/editlogs.ejs', { log:log })
     } catch (err) {
         console.log(err)
         res.send('server error')

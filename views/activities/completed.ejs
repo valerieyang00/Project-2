@@ -1,0 +1,11 @@
+<h4>Completed: </h4>
+<% saved.forEach(save => { %>
+    <% if(save.completed) {%>
+        <ul>
+        <li><%= save.activity%></li>
+        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+            <input type="submit" value="delete">
+        </form>
+        </ul>
+    <%}%>        
+<%})%>
