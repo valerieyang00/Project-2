@@ -17,24 +17,24 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <ul>
-            <!-- if the user is logged in -->
-            <!-- all data in res.locals is usable in layout -->
-            <% if (user) { %>
-                <p>Logged in as <%= user.name %></p>
-                <li><a href="/users/profile">Profile</a></li>
-                <li><a href="/users/logout">Logout</a></li>
-                <li><a href="/saved">Saved</a></li>
-                <li><a href="/saved/completed">Completed</a></li>
-                <li><a href="/recommendations">Recommendations Feed</a></li>
-
-            <%} else { %>
-                <li><a href="/users/new">Sign Up</a></li>
-                <li><a href="/users/login">Login</a></li>
-            <%} %>
-        </ul>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+                <!-- if the user is logged in -->
+                <!-- all data in res.locals is usable in layout -->
+                <% if (user) { %>
+                    <a class="nav-link" href="/saved">Saved</a>
+                    <a class="nav-link" href="/saved/completed">Completed</a>
+                    <a class="nav-link" href="/recommendations">Recommendations Feed</a>
+                    
+                    <a class="nav-link" href="/users/profile">Profile</a>
+                    <a class="nav-link" href="/users/logout">Logout</a>
+                    <p>Logged in as <%= user.name %></p>
+                <%} else { %>
+                    <a class="nav-link" href="/users/new">Sign Up</a>
+                    <a class="nav-link" href="/users/login">Login</a>
+                <%} %>
+        </div>
     </nav>
 
     <%- body %>

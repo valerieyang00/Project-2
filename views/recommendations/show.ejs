@@ -14,6 +14,7 @@
     <a href="/recommendations/busywork">busywork</a>
 </nav>
 <% recs.forEach(rec => {%>
+        <h5>Post by: <%= user.name%></h5>
         <h5><%= rec.title%> </h5>
         <p><%= rec.content%></p>   
     <%})%>
