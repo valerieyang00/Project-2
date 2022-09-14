@@ -4,7 +4,7 @@
 <% logs.forEach(log => { %>
     <h5>Title: <%=log.title%> (<%= moment(log.createdAt).calendar()%>):</h5>
     <p><%=log.content%></p>
-    <a href="/saved/logs/*/<%=log.id%>">edit</a>
+    <a href="/saved/logs/<%=activity.id%>/<%=log.id%>">edit</a>
 <%})%>
 
 

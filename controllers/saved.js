@@ -51,7 +51,7 @@ router.post('/logs/:id', async (req, res) => {
             activityId: req.params.id,
             userId: res.locals.user.id,
             title: req.body.title,
-            content: req.body.content           
+            content: req.body.content
         })
         res.redirect(`/saved/logs/${req.params.id}`)
     } catch (err) {
@@ -62,13 +62,31 @@ router.post('/logs/:id', async (req, res) => {
 
 router.get('/logs/:id/:logid', async (req, res) => {
     try {
-        console.log(req.params.logid)
         const log = await db.log.findOne({
+            where: {
+                id: req.params.logid,
+            },
+            include: [db.activity]
+        })
+        console.log(log)
+        res.render('activities/editlogs.ejs', { log: log })
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
+router.put('/logs/:id/:logid', async (req, res) => {
+    try {
+        const logUpdate = await db.log.update({
+            title: req.body.title,
+            content: req.body.content
+        }, {
             where: {
                 id: req.params.logid
             }
         })
-        res.render('activities/editlogs.ejs', { log:log })
+        res.redirect(`/saved/logs/${req.params.id}`)
     } catch (err) {
         console.log(err)
         res.send('server error')
