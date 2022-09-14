@@ -1,5 +1,6 @@
 <h4>Completed: </h4>
 <% saved.forEach(save => { %>
+    <% if(user.id === save.userId) {%>
     <% if(save.completed) {%>
         <ul>
         <li><%= save.activity%></li>
@@ -8,5 +9,5 @@
         </form>
         <a href="/recommendations/new/<%=save.id%>">Click to Post recommendation!</a>
         </ul>
-    <%}%>        
+    <%}}%>        
 <%})%>

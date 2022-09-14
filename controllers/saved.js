@@ -9,7 +9,7 @@ router.use(methodOverride("_method"))
 router.get('/', async (req, res) => {
     try {
         const saved = await db.activity.findAll()
-        res.render('activities/saved.ejs', { saved: saved })
+        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user })
     } catch (err) {
         console.log(err)
         res.send('server error')
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.get('/completed', async (req, res) => {
     try {
         const saved = await db.activity.findAll()
-        res.render('activities/completed.ejs', { saved: saved })
+        res.render('activities/completed.ejs', { saved: saved, user: res.locals.user })
     } catch (err) {
         console.log(err)
         res.send('server error')

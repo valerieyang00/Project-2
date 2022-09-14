@@ -3,6 +3,7 @@
 
 <h4>Not Yet Started:</h4>
 <% saved.forEach(save => { %>
+<% if(user.id === save.userId) {%>
     <% if(!save.in_progress) {%>
         <ul>
         <li><%= save.activity%></li>
@@ -21,10 +22,11 @@
             <input type="submit" value="delete">
         </form>
         </ul>
-    <%}%>        
+    <%}}%>        
 <%})%>
 <h4>In Progress:</h4>
 <% saved.forEach(save => { %>
+    <% if(user.id === save.userId) {%>
     <% if(save.in_progress && !save.completed) {%>
         <ul>
         <li><%= save.activity%></li>
@@ -38,6 +40,6 @@
             <input type="submit" value="delete">
         </form>
         </ul>
-    <%}%>        
+    <%}}%>        
 <%})%>
 
