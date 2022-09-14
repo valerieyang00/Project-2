@@ -1,21 +1,45 @@
 <h2>Recommendations Feed</h2>
-<a href="/recommendations/<%=user.id%>">click to view recommendations you posted</a>
 
-<h5>View by Category:</h5>
-<nav>
-    <a href="/recommendations/education">education</a>
-    <a href="/recommendations/relaxation">relaxation</a>
-    <a href="/recommendations/diy">diy</a>
-    <a href="/recommendations/recreational">recreational</a>
-    <a href="/recommendations/social">social</a>
-    <a href="/recommendations/charity">charity</a>
-    <a href="/recommendations/cooking">cooking</a>
-    <a href="/recommendations/music">music</a>
-    <a href="/recommendations/busywork">busywork</a>
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">View By Type:</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Search Type
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/recommendations/education">education</a></li>
+                <li><a class="dropdown-item" href="/recommendations/relaxation">relaxation</a></li>
+                <li><a class="dropdown-item" href="/recommendations/diy">diy</a></li>
+                <li><a class="dropdown-item" href="/recommendations/recreational">recreational</a></li>
+                <li><a class="dropdown-item" href="/recommendations/social">social</a></li>
+                <li><a class="dropdown-item" href="/recommendations/charity">charity</a></li>
+                <li><a class="dropdown-item" href="/recommendations/cooking">cooking</a></li>
+                <li><a class="dropdown-item" href="/recommendations/music">music</a></li>
+                <li><a class="dropdown-item" href="/recommendations/busywork">busywork</a></li>
+            </ul>
+
+    </ul>
+    <a href="/recommendations/<%=user.id%>">your recommendations</a>
+</div>
+</div>
 </nav>
-<% recs.forEach(rec => {%>
-        <h5>Post by: <%= user.name%></h5>
-        <h5><%= rec.title%> </h5>
-        <p><%= rec.content%></p>   
+
+<% recs.forEach(rec=> {%>
+    <h5>Post by: <%= user.name%>
+    </h5>
+    <h5>
+        <%= rec.title%>
+    </h5>
+    <p>
+        <%= rec.content%>
+    </p>
     <%})%>
- 
+
+  
