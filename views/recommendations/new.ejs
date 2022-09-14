@@ -1,0 +1,14 @@
+<h4>Post a recommendation for <%= activity.type %>:</h4>
+<h5>"<%= activity.activity %>"</h5>
+
+<form method="POST" action="/recommendations/<%=user.id%>/<%=activity.id%>">
+    <label>title</label>
+    <input type="text" name="title">
+    <label>Rating (1-10)</label>
+    <input type="number" name="rating">
+    <label>Resource</label>
+    <input type="text" value="list any helpful resources" name="resource">
+    <label>content</label>
+    <textarea name="content"></textarea>
+    <button type="submit">Post</button>
+</form>

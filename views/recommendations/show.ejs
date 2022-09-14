@@ -1,0 +1,10 @@
+<h2>Recommendations Feed</h2>
+<a href="/recommendations/<%=user.id%>">click to view recommendations you posted</a>
+
+<% if(user) { %>
+    <% recs.forEach(rec => { %>
+        <h5><%= rec.title%> </h5>
+        <p><%= rec.content%></p>
+
+
+    <%})}%>
