@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.user.hasMany(models.activity)
       models.user.hasMany(models.log)
+      models.user.hasMany(models.recommendation)
     }
   }
   user.init({
