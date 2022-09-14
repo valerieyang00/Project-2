@@ -9,9 +9,9 @@ router.use(methodOverride("_method"))
 router.get('/', async (req, res) => {
     try {
         const recs = await db.recommendation.findAll({
-            include: [db.activity]
+            include: [db.activity, db.user]
         })
-        res.render('recommendations/show.ejs', { recs: recs, user: res.locals.user})
+        res.render('recommendations/show.ejs', { recs: recs})
       } catch (err) {
         console.log(err)
         res.send('server error')
