@@ -17,6 +17,18 @@ router.get('/', async (req, res) => {
         res.send('server error')
     }
 })
+router.get('/:type', async (req, res) => {
+    try {
+        const recs = await db.recommendation.findAll({
+            include: [db.activity]
+        })
+        const type = req.params.type
+        res.render('recommendations/bycategory.ejs', { recs: recs, activitytype:type})
+      } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
 
 router.get('/new/:activityid', async (req, res) => {
     try {
