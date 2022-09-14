@@ -1,3 +1,12 @@
 sequelize model:create --name user --attributes email:string,password:string,name:string,city:string,state:string,photo:string
 
-sequelize model:create --name activity --attributes 
+sequelize model:create --name activity --attributes activity:text,type:string,accessibility:decimal,participants:integer,price:decimal,in_progress:boolean,completed:boolean,userId:integer
+
+sequelize model:create --name log --attributes userId:integer,activityId:integer,title:string,content:text
+
+STRETCH:
+
+sequelize model:create --name recommendation --attributes userId:integer,activityId:integer,title:string,resource:text,content:text,rating:integer
+
+sequelize model:create --name comment --attributes userId:integer,recommendationId:integer,content:text
+

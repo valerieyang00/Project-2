@@ -22,10 +22,14 @@ router.post('/', async (req, res) => {
                 email: req.body.email
             },
             defaults: {
-                password: hashedPW
+                password: hashedPW,
+                name: req.body.name,
+                city: req.body.city,
+                state: req.body.state,
+                photo: req.body.photo
             }
+  
         })
-
         // if the user was found.... send them to login and let them know they already have an account
         if (!created) {
             console.log('user already exists')

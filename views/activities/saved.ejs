@@ -1,0 +1,55 @@
+<h3>Things to do!</h3>
+
+
+
+<h4>Not Yet Started:</h4>
+<% saved.forEach(save => { %>
+    <% if(!save.in_progress) {%>
+        <ul>
+        <li><%= save.activity%></li>
+
+        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+            <input hidden value="in_progress" name="name">
+            <button type="submit">in progress</button>
+        </form>
+        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+            <input hidden value="completed" name="name">
+            <button type="submit">completed</button>
+        </form>
+
+
+        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+            <input type="submit" value="delete">
+        </form>
+        </ul>
+    <%}%>        
+<%})%>
+<h4>In Progress:</h4>
+<% saved.forEach(save => { %>
+    <% if(save.in_progress && !save.completed) {%>
+        <ul>
+        <li><%= save.activity%></li>
+        <a href="/saved/logs/<%=save.id%>">Log your progress!</a>
+        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+            <input hidden value="completed" name="name">
+            <button type="submit">completed</button>
+        </form>
+
+        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+            <input type="submit" value="delete">
+        </form>
+        </ul>
+    <%}%>        
+<%})%>
+
+<h4>Completed: </h4>
+<% saved.forEach(save => { %>
+    <% if(save.completed) {%>
+        <ul>
+        <li><%= save.activity%></li>
+        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+            <input type="submit" value="delete">
+        </form>
+        </ul>
+    <%}%>        
+<%})%>

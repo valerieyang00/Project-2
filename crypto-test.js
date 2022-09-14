@@ -1,5 +1,6 @@
 const crypto = require('crypto-js')
 const bcrypt = require('bcrypt')
+const db = require("./models")
 
 // encryption is a two way process - data is encryped using an algorithm and a key
 // you must know the key to decrypt the data
@@ -20,9 +21,21 @@ const bcrypt = require('bcrypt')
 //2. has function return the same value for the same input
 // all passwords will be hashed in the database
 
-const myPassword = 'random123'
-const hashedPw = bcrypt.hashSync(myPassword, 12) //second number is the salt
-console.log(hashedPw)
+// const myPassword = 'random123'
+// const hashedPw = bcrypt.hashSync(myPassword, 12) //second number is the salt
+// console.log(hashedPw)
 
-// we can only compare strings to a hash to see if they match
-console.log(bcrypt.compareSync('random12322', hashedPw))
+// // we can only compare strings to a hash to see if they match
+// console.log(bcrypt.compareSync('random12322', hashedPw))
+
+const update = async () => {
+    await db.activity.update({
+        in_progress: true
+        // completed: false
+    },{
+    where: {
+        id: 2
+    }})
+}
+
+update()

@@ -1,0 +1,37 @@
+<h3>
+    <%= type %>
+</h3>
+
+<% if(user) { %>
+    <h4>
+        <%= data.activity%>
+    </h4>
+    <ul>
+        <li>participants: <%= data.participants%>
+        </li>
+        <li>accessibility(scale 0-1): <%= data.accessibility%>
+        </li>
+        <li>price(scale 0-1): <%= data.price%>
+        </li>
+    </ul>
+    
+    <form action="/saved" method="POST">
+        <input hidden value="<%= data.participants%>" name="participants" />
+        <input hidden value="<%= data.accessibility%>" name="accessibility" />
+        <input hidden value="<%= data.price%>" name="price" />
+        <input hidden value="<%= data.activity%>" name="activity" />
+        <input hidden value="<%= type%>" name="type" />
+        <button type="submit">Add</button>
+            <% if(message) { %>
+                <p><%= message %></p>    
+            <%}%>
+    
+    </form>
+    
+    <form action="/<%=type%>" method="GET">
+        <button>Pass</button>
+    </form>
+<%} else {%>
+    <h4>Please log in to your account!</h4>
+
+<%}%>

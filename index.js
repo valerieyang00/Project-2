@@ -16,6 +16,8 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+const methodOverride = require("method-override")
+app.use(methodOverride("_method"))
 //our custom auth middleware
 //next tells express to move on to next route or middleware in the chain 
 app.use(async (req, res, next) => {
@@ -36,16 +38,20 @@ app.use(async (req, res, next) => {
 
 //controllers set up
 app.use('/users', require('./controllers/users'))
+app.use('/saved', require('./controllers/saved'))
 
 //route definitions
 app.get('/', (req, res) => {
-    axios.get("http://www.boredapi.com/api/activity/")
-        .then(response => {
-            res.render('home.ejs', {activity: response.data})
-        })
-    
+    res.render('home.ejs')
 })
 
+
+app.get('/:type', (req, res) => {
+    axios.get(`http://www.boredapi.com/api/activity?type=${req.params.type}`)
+        .then(response => {
+            res.render('activities/show.ejs', { data: response.data, type: req.params.type, message: req.query.message ? req.query.message : null, user: res.locals.user })
+        })
+})
 
 
 
