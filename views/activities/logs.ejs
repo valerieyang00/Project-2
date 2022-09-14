@@ -5,6 +5,10 @@
     <h5>Title: <%=log.title%> (<%= moment(log.createdAt).calendar()%>):</h5>
     <p><%=log.content%></p>
     <a href="/saved/logs/<%=activity.id%>/<%=log.id%>">edit</a>
+    <form method="POST" action ="/saved/logs/<%=activity.id%>/<%=log.id%>/?_method=DELETE">
+      <input type="submit" value="delete">
+  </form>
+
 <%})%>
 
 

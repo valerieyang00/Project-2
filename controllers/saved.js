@@ -93,6 +93,20 @@ router.put('/logs/:id/:logid', async (req, res) => {
     }
 })
 
+router.delete('/logs/:id/:logid', async (req, res) => {
+    try {
+        const logDelete = await db.log.destroy({
+            where: {
+                id: req.params.logid
+            }
+        })
+        res.redirect(`/saved/logs/${req.params.id}`)
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
 router.post('/', async (req, res) => {
     try {
         const newSaved = await db.activity.findOrCreate({
