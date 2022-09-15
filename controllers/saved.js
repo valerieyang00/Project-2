@@ -6,10 +6,29 @@ const methodOverride = require("method-override")
 const activity = require('../models/activity')
 router.use(methodOverride("_method"))
 
-router.get('/', async (req, res) => {
+router.get('/:status', async (req, res) => {
     try {
         const saved = await db.activity.findAll()
-        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user })
+        const param = req.params.status
+        let status = null
+        function change() {
+            switch (param) {
+                case ("all"):
+                    status = "All"
+                    break
+                case ("inprogress"):
+                    status = "In Progress"
+                    break
+                case ("completed"):
+                    status = "Completed"
+                    break
+                case ("tostart"):
+                    status = "Not Yet Started"
+                    break
+            }
+        }
+        change()
+        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user, status: status })
     } catch (err) {
         console.log(err)
         res.send('server error')

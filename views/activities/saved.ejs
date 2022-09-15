@@ -1,5 +1,31 @@
 <h3>Things to do!</h3>
 
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">View By Status:</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/saved" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+          <%=status%>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/saved/tostart">Not Yet Started</a></li>
+                <li><a class="dropdown-item" href="/saved/inprogress">In Progress</a></li>
+                <li><a class="dropdown-item" href="/saved/completed">Completed</a></li>
+                <li><a class="dropdown-item" href="/saved/all">All</a></li>
+                           
+            </ul>
+
+    </ul>
+
+</div>
+</div>
+</nav>
+
 
 <h4>Not Yet Started:</h4>
 <% saved.forEach(save => { %>
@@ -24,6 +50,7 @@
         </ul>
     <%}}%>        
 <%})%>
+
 <h4>In Progress:</h4>
 <% saved.forEach(save => { %>
     <% if(user.id === save.userId) {%>
