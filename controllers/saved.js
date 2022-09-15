@@ -176,7 +176,7 @@ router.put('/:id', async (req, res) => {
                 }
             })
         }
-        res.redirect('/saved')
+        res.redirect('/saved/all')
     } catch (err) {
         console.log(err)
         res.send('server error')

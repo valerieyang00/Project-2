@@ -66,5 +66,19 @@ router.get('/users/:userid', async (req, res) => {
         res.send('server error')
     }
 })
+router.delete('/users/:userid/:activityid', async (req, res) => {
+    try {
+        const recDelete = await db.recommendation.destroy({
+            where: {
+                userId: req.params.userid,
+                activityId: req.params.activityid
+            }
+        })
+        res.redirect(`/recommendations/users/${req.params.userid}`)
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
 
 module.exports = router
