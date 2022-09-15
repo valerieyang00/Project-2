@@ -43,10 +43,13 @@
             <button type="submit">completed</button>
         </form>
 
-
         <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
             <input type="submit" value="delete">
         </form>
+
+        <% if(save.participants > 1) {%>
+            <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+        <%}%>
         </ul>
     <%}}%>        
 <%})}%>
@@ -67,6 +70,10 @@
         <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
             <input type="submit" value="delete">
         </form>
+
+        <% if(save.participants > 1) {%>
+            <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+        <%}%>
         </ul>
     <%}}%>        
 <%})}%>

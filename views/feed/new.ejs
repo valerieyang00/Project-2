@@ -1,0 +1,15 @@
+<h4>Invite Others to Your Activity:</h4>
+<h5>"<%= activity.activity %>"</h5>
+
+<form method="POST" action="/feed/<%=activity.id%>">
+    <label>Activity</label>
+    <input hidden value="<%=activity.userId%>" name="userId">
+    <input disabled type="text" name="activity" value="<%=activity.activity%>">
+    <label>Participants needed:</label>
+    <input type="number" name="participants" value="<%=activity.participants%>">
+    <input type="text" name="city" value="<%=user.city%>">
+    <input type="text" name="state" value="<%=user.state%>">
+    <label>Message:</label>
+    <textarea name="content"></textarea>
+    <button type="submit">Post</button>
+</form>

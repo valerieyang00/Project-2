@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-const user = require('../models/user')
+// const user = require('../models/user')
 const methodOverride = require("method-override")
 // const activity = require('../models/activity')
 router.use(methodOverride("_method"))

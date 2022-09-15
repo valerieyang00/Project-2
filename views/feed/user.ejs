@@ -1,0 +1,22 @@
+<a href="/feed/all">To Feed</a>
+<h4>Invitations Posted by you</h4>
+
+<% if(user) {%>
+    <% feeds.forEach(feed => {%>
+        <h5>Posted (<%= moment(feed.createdAt).calendar()%>)
+        </h5>
+        <h5>
+            For activity:"<%= feed.activity.activity%>"
+        </h5>
+
+        <h6>
+            # of People: <%= feed.activity.participants%>
+        </h6>
+        <p>
+            <%= feed.content%>
+        </p>
+
+        <form method="POST" action ="/feed/users/<%=feed.userId%>/<%= feed.id%>?_method=DELETE">
+            <input type="submit" value="delete post">
+        </form>
+        <%})}%>

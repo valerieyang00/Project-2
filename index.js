@@ -49,6 +49,7 @@ app.use((req, res, next) => {
 app.use('/users', require('./controllers/users'))
 app.use('/saved', require('./controllers/saved'))
 app.use('/recommendations', require('./controllers/recommendations'))
+app.use('/feed', require('./controllers/feed'))
 
 
 //route definitions

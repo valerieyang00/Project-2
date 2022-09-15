@@ -6,14 +6,13 @@ const methodOverride = require("method-override")
 // const activity = require('../models/activity')
 router.use(methodOverride("_method"))
 
-
-router.get('/:type', async (req, res) => {
+router.get('/:search', async (req, res) => {
     try {
-        const recs = await db.recommendation.findAll({
+        const feeds = await db.feed.findAll({
             include: [db.activity, db.user]
         })
-        const type = req.params.type
-        res.render('recommendations/show.ejs', { recs: recs, activitytype:type})
+        const params = req.params.search
+        res.render('feed/show.ejs', { params:params, feeds:feeds})
       } catch (err) {
         console.log(err)
         res.send('server error')
@@ -28,24 +27,21 @@ router.get('/new/:activityid', async (req, res) => {
             },
             include: [db.user]
         })
-        console.log(activity)
-        res.render('recommendations/new.ejs', { activity:activity, user: activity.user })
+        res.render('feed/new.ejs', { activity:activity})
     } catch (err) {
         console.log(err)
         res.send('server error')
     }
 })
 
-router.post('/:userid/:activityid', async (req, res) => {
+router.post('/:activityid', async (req, res) => {
     try {
-        const recommendation = await db.recommendation.create({
-            userId: req.params.userid,
-            activityId: req.params.activityid,
-            title: req.body.title,
-            resource: req.body.resource,
-            content: req.body.content
+        const newFeed = await db.feed.create({
+                activityId: req.params.activityid,
+                userId: req.body.userId,
+                content:req.body.content
         })
-        res.redirect(`/recommendations/users/${req.params.userid}`)
+        res.redirect('/feed/all')
     } catch (err) {
         console.log(err)
         res.send('server error')
@@ -54,27 +50,26 @@ router.post('/:userid/:activityid', async (req, res) => {
 
 router.get('/users/:userid', async (req, res) => {
     try {
-        const recs = await db.recommendation.findAll({
+        const feeds = await db.feed.findAll({
             where: {
                 userId: req.params.userid
             },
             include: [db.activity]
         })
-        res.render('recommendations/user.ejs', { recs: recs, activity: recs.activity })
+        res.render('feed/user.ejs', { feeds:feeds})
     } catch (err) {
         console.log(err)
         res.send('server error')
     }
 })
-router.delete('/users/:userid/:activityid', async (req, res) => {
+router.delete('/users/:userid/:feedid', async (req, res) => {
     try {
-        const recDelete = await db.recommendation.destroy({
+        const feedDelete = await db.feed.destroy({
             where: {
-                userId: req.params.userid,
-                activityId: req.params.activityid
-            }
-        })
-        res.redirect(`/recommendations/users/${req.params.userid}`)
+                id: req.params.feedid
+        }})
+    
+        res.redirect(`/feed/users/${req.params.userid}`)
     } catch (err) {
         console.log(err)
         res.send('server error')
