@@ -1,0 +1,17 @@
+<form method="POST" action="/feed/<%=feed.id%>?_method=PUT">
+    <label>Activity</label>
+    <input hidden value="<%=feed.userId%>" name="userId">
+    <input disabled type="text" name="activity" value="<%=feed.activity.activity%>">
+    <label>Participants needed:</label>
+    <input type="number" name="participants" value="<%=feed.activity.participants%>">
+    <label>Status:</label>
+    <select name="status" required>
+        <option>Open</option>
+        <option>Closed</option>
+    </select>
+    <input type="text" name="city" value="<%=user.city%>">
+    <input type="text" name="state" value="<%=user.state%>">
+    <label>Message:</label>
+    <textarea name="content"></textarea>
+    <button type="submit">Submit Changes</button>
+</form>

@@ -10,12 +10,16 @@
         </h5>
 
         <h6>
+            Status: <%= feed.status%>
+        </h6>
+        <h6>
             # of People: <%= feed.activity.participants%>
         </h6>
         <p>
             <%= feed.content%>
         </p>
 
+        <a href="/feed/edit/<%=feed.id%>">edit</a>
         <form method="POST" action ="/feed/users/<%=feed.userId%>/<%= feed.id%>?_method=DELETE">
             <input type="submit" value="delete post">
         </form>

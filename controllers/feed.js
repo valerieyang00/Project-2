@@ -62,6 +62,21 @@ router.get('/users/:userid', async (req, res) => {
         res.send('server error')
     }
 })
+
+router.get('/edit/:feedid', async (req, res) => {
+    try {
+        const feed = await db.feed.findOne({
+            where: {
+                id: req.params.feedid
+            },
+            include: [db.activity]
+        })
+        res.render('feed/edit.ejs', { feed:feed})
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
 router.delete('/users/:userid/:feedid', async (req, res) => {
     try {
         const feedDelete = await db.feed.destroy({
@@ -74,6 +89,24 @@ router.delete('/users/:userid/:feedid', async (req, res) => {
         console.log(err)
         res.send('server error')
     }
+})
+
+router.put('/:feedid', async (req, res) => {
+    try{
+    const feedUpdate = await db.feed.update({
+        content: req.body.content,
+        status: req.body.status
+    }, {
+        where: {
+            id: req.params.feedid
+        }
+    })
+    const userId = req.body.userId
+    res.redirect(`/feed/users/${userId}`)
+} catch (err) {
+    console.log(err)
+    res.send('server error')
+}
 })
 
 module.exports = router

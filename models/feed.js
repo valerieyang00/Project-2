@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   feed.init({
     userId: DataTypes.INTEGER,
     activityId: DataTypes.INTEGER,
-    content: DataTypes.TEXT
+    content: DataTypes.TEXT,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'feed',
