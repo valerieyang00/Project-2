@@ -19,6 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
+            <div class="nav justify-content-start">
             <a class="navbar-brand" href="/">Home</a>
                 <!-- if the user is logged in -->
                 <!-- all data in res.locals is usable in layout -->
@@ -26,16 +27,17 @@
                     <a class="nav-link" href="/saved">Saved</a>
                     <a class="nav-link" href="/saved/completed">Completed</a>
                     <a class="nav-link" href="/recommendations">Recommendations Feed</a>
-                    <div class="justify-content-end">
-                        <p class="navbar-text">Logged in as <a href="/users/profile"><%= user.name %></a></p>
-                    <a class="nav-link" href="/users/logout">Logout</a>
                 </div>
+                    <div class="nav justify-content-end">
+                        <a class="nav-link" href="/users/profile">Logged in as <%= user.name %></a>
+                        <a class="nav-link" href="/users/logout">Logout</a>
+                    </div>
+
+           
                 <%} else { %>
-                    <div class="">
-                        <ol class="breadcrumb">
-                        <li class="breadcrumb-item" ><a class="nav-link " href="/users/new">Sign Up</a></li>
-                        <li class="breadcrumb-item" ><a class="nav-link " href="/users/login">Login</a></li>
-                      </ol>
+                    <div class="nav justify-content-end">
+                        <a class="nav-link" href="/users/new">Sign Up</a>
+                        <a class="nav-link" href="/users/login">Login</a>
                     </div>
                 <%} %>
         </div>
