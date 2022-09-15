@@ -28,17 +28,7 @@ router.get('/:status', async (req, res) => {
             }
         }
         change()
-        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user, status: status })
-    } catch (err) {
-        console.log(err)
-        res.send('server error')
-    }
-})
-
-router.get('/completed', async (req, res) => {
-    try {
-        const saved = await db.activity.findAll()
-        res.render('activities/completed.ejs', { saved: saved, user: res.locals.user })
+        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user, status: status, param: param })
     } catch (err) {
         console.log(err)
         res.send('server error')

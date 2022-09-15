@@ -26,7 +26,7 @@
 </div>
 </nav>
 
-
+<% if(param === "all" || param === "tostart") { %>
 <h4>Not Yet Started:</h4>
 <% saved.forEach(save => { %>
 <% if(user.id === save.userId) {%>
@@ -49,8 +49,9 @@
         </form>
         </ul>
     <%}}%>        
-<%})%>
+<%})}%>
 
+<% if(param === "all" || param === "inprogress") { %>
 <h4>In Progress:</h4>
 <% saved.forEach(save => { %>
     <% if(user.id === save.userId) {%>
@@ -68,5 +69,20 @@
         </form>
         </ul>
     <%}}%>        
-<%})%>
+<%})}%>
+
+<% if(param === "all" || param === "completed") { %>
+<h4>Completed: </h4>
+<% saved.forEach(save => { %>
+    <% if(user.id === save.userId) {%>
+    <% if(save.completed) {%>
+        <ul>
+        <li><%= save.activity%></li>
+        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+            <input type="submit" value="delete">
+        </form>
+        <a href="/recommendations/new/<%=save.id%>">Click to Post recommendation!</a>
+        </ul>
+    <%}}%>        
+<%})}%>
 
