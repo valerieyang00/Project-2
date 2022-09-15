@@ -5,4 +5,8 @@
     <% recs.forEach(rec => { %>
         <h5><%= rec.title%> </h5>
         <p><%= rec.content%></p>
+
+        <form method="POST" action ="/recommendations/users/<%= rec.userId%>/?_method=DELETE">
+            <input type="submit" value="delete post">
+        </form>
     <%})}%>

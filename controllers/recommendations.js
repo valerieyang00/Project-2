@@ -55,14 +55,14 @@ router.post('/:userid/:activityid', async (req, res) => {
             resource: req.body.resource,
             content: req.body.content
         })
-        res.redirect(`/recommendations/${req.params.userid}`)
+        res.redirect(`/recommendations/users/${req.params.userid}`)
     } catch (err) {
         console.log(err)
         res.send('server error')
     }
 })
 
-router.get('/:userid', async (req, res) => {
+router.get('/users/:userid', async (req, res) => {
     try {
         const recs = await db.recommendation.findAll({
             where: {
