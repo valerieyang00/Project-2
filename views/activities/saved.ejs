@@ -78,10 +78,11 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item active"><a href="/saved/logs/<%=save.id%>">Log your progress</a></li>
+              <% if(save.participants > 1) {%>
               <li class="breadcrumb-item active">                
-                <% if(save.participants > 1) {%>
-                <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
-            <%}%></li>
+                  <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+            </li>
+                  <%}%>
             </ol>
           </nav>
         </ul>

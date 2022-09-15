@@ -11,8 +11,11 @@ router.get('/:search', async (req, res) => {
         const feeds = await db.feed.findAll({
             include: [db.activity, db.user]
         })
+        const comments = await db.comment.findAll({
+            include: [db.feed, db.user]
+        })
         const params = req.params.search
-        res.render('feed/show.ejs', { params:params, feeds:feeds})
+        res.render('feed/show.ejs', { params:params, feeds:feeds, user: res.locals.user, comments:comments})
       } catch (err) {
         console.log(err)
         res.send('server error')
@@ -108,5 +111,22 @@ router.put('/:feedid', async (req, res) => {
     res.send('server error')
 }
 })
+
+router.post('/comments/:feedid', async (req, res) => {
+    try{
+    const newComment = await db.comment.create({
+        content: req.body.content,
+        feedId: req.params.feedid,
+        userId: req.body.userId
+
+    })
+    res.redirect("/feed/all")
+} catch (err) {
+    console.log(err)
+    res.send('server error')
+}
+})
+
+
 
 module.exports = router
