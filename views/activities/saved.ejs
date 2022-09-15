@@ -1,4 +1,4 @@
-<h3>Things to do!</h3>
+
 
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
@@ -32,25 +32,29 @@
 <% if(user.id === save.userId) {%>
     <% if(!save.in_progress) {%>
         <ul>
-        <li><%= save.activity%></li>
+        <li>"<%= save.activity%>"</li>
+        <div class="nav">
+            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                <input hidden value="in_progress" name="name">
+                <button type="submit" class="btn btn-primary">in progress</button>
+            </form>
 
-        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-            <input hidden value="in_progress" name="name">
-            <button type="submit">in progress</button>
-        </form>
-        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-            <input hidden value="completed" name="name">
-            <button type="submit">completed</button>
-        </form>
-
-        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-            <input type="submit" value="delete">
-        </form>
-
-        <% if(save.participants > 1) {%>
-            <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
-        <%}%>
-        </ul>
+            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                <input hidden value="completed" name="name">
+                <button type="submit" class="btn btn-success">completed</button>
+            </form>
+    
+            <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                <button type="submit" class="btn btn-danger">delete</button>
+            </form>
+        </div>
+        <p>
+            <% if(save.participants > 1) {%>
+                <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+            <%}%>
+        </p>
+            
+    </ul>
     <%}}%>        
 <%})}%>
 
@@ -61,19 +65,25 @@
     <% if(save.in_progress && !save.completed) {%>
         <ul>
         <li><%= save.activity%></li>
-        <a href="/saved/logs/<%=save.id%>">Log your progress!</a>
-        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-            <input hidden value="completed" name="name">
-            <button type="submit">completed</button>
-        </form>
+        <div class="nav">
+            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                <input hidden value="completed" name="name">
+                <button type="submit" class="btn btn-success">completed</button>
+            </form>
+            
+            <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                <button type="submit" class="btn btn-danger">delete</button>
+            </form>
+        </div>
+        <p>
+            <a href="/saved/logs/<%=save.id%>">Log your progress!</a>
+        </p>
+        <p>
+            <% if(save.participants > 1) {%>
+                <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+            <%}%>
+        </p>
 
-        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-            <input type="submit" value="delete">
-        </form>
-
-        <% if(save.participants > 1) {%>
-            <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
-        <%}%>
         </ul>
     <%}}%>        
 <%})}%>
@@ -86,10 +96,14 @@
         <ul>
         <li><%= save.activity%></li>
         <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-            <input type="submit" value="delete">
+            <button type="submit" class="btn btn-danger">delete</button>
         </form>
-        <a href="/recommendations/new/<%=save.id%>">Click to Post recommendation!</a>
-        <a href="/saved/logs/<%=save.id%>">View logs</a>
+        <p>
+            <a href="/recommendations/new/<%=save.id%>">Click to Post recommendation!</a>
+        </p>
+        <p>
+            <a href="/saved/logs/<%=save.id%>">View logs</a>
+        </p>
         </ul>
     <%}}%>        
 <%})}%>
