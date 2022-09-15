@@ -4,7 +4,8 @@
 
 <% if(user) { %>
     <% recs.forEach(rec => { %>
-        <h5><%= rec.title%> </h5>
+        <h5>For activity: "<%= rec.activity.activity%>"</h5>
+        <h5><%= rec.title%> (rating: <%=rec.rating%>)</h5>
         <p><%= rec.content%></p>
 
         <form method="POST" action ="/recommendations/users/<%= rec.userId%>/<%=rec.activityId%>?_method=DELETE">

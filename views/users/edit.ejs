@@ -1,15 +1,22 @@
 
 
 <form method="POST" action="/users/profile/<%=user.id%>/?_method=PUT">
-    <label>username</label>
-    <input value="<%=user.name%>" name="username">
-    <label>email</label>
-    <input value="<%=user.email%>" name="email">
-    <label>city</label>
-    <input value="<%=user.city%>" name="city">
-    <label>state</label>
-    <input value="<%=user.state%>" name="state">
-    <label>photo URL</label>
-    <input value="<%=user.photo%>" name="photo">
+    <div class="form-group">
+        <label>email</label>
+        <input class="form-control" value="<%=user.email%>" name="email">
+        
+        <label for="username">Username</label>
+        <input class="form-control" value="<%=user.name%>" name="username">
+
+        <label>city</label>
+        <input class="form-control" value="<%=user.city%>" name="city">
+
+        <label>state</label>
+        <input class="form-control" value="<%=user.state%>" name="state">
+
+        <label>photo URL</label>
+        <input class="form-control" value="<%=user.photo%>" name="photo">
+    </div>
     <button type="submit">Submit Changes</button>
 </form>
+

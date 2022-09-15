@@ -53,7 +53,6 @@ router.post('/', async (req, res) => {
 
 // GET /users/login -- show a login from to user
 router.get('/login', (req, res) => {
-    console.log(req.query)
     res.render('users/login.ejs', {
         // if the req.query.message exist, pass it as message, otherwise pass in null
         // ternary operator (old syntax, shorthand for if/else)
@@ -65,6 +64,7 @@ router.get('/login', (req, res) => {
 //POST /users/login -- accept a payload of form data and use it to log a user in
 router.post('/login', async (req, res) => {
     try {
+        console.log(req.query)
         //look up the user in the db using the supplied email
         const user = await db.user.findOne({
             where: {
@@ -79,7 +79,6 @@ router.post('/login', async (req, res) => {
         }
         //if the user found, but given wrong password, send them back to login form
         else if (!bcrypt.compareSync(req.body.password, user.password)) {
-            console.log(req.body.password)
             console.log('password does not match')
             //passing in query ?key= 
             res.redirect('/users/login?message=' + noLoginMsg)

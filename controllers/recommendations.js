@@ -43,7 +43,8 @@ router.post('/:userid/:activityid', async (req, res) => {
             activityId: req.params.activityid,
             title: req.body.title,
             resource: req.body.resource,
-            content: req.body.content
+            content: req.body.content,
+            rating: req.body.rating
         })
         res.redirect(`/recommendations/users/${req.params.userid}`)
     } catch (err) {

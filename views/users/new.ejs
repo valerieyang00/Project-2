@@ -1,22 +1,24 @@
 <form action="/users" method="POST">
-    <label for="email">Email:</label>
-    <input id="email" type="email" name="email" required>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Email:</label>
+        <input type="email" name="email" class="form-control" id="formGroupExampleInput" placeholder="enter email" required>
+    
+        <label for="password">Password:</label>
+        <input class="form-control" id="password" type="password" name="password" placeholder="enter password" required>
+    
+        <label for="name">Username:</label>
+        <input class="form-control" id="name" type="name" name="name" placeholder="enter username" required>
+    
+        <label for="city">City:</label>
+        <input class="form-control" id="city" type="city" name="city" placeholder="enter city" required>
+    
+        <label for="state">State:</label>
+        <input class="form-control" id="state" type="state" name="state" placeholder="enter state" required>
+    
+        <label for="photo">Photo URL:</label>
+        <input class="form-control" id="photo" type="photo" name="photo" placeholder="enter url (optional)" >
+    </div>
 
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password" required>
-
-    <label for="name">Username:</label>
-    <input id="name" type="name" name="name" required>
-
-    <label for="city">City:</label>
-    <input id="city" type="city" name="city" required>
-
-    <label for="state">State:</label>
-    <input id="state" type="state" name="state" required>
-
-    <label for="photo">Photo URL:</label>
-    <input id="photo" type="photo" name="photo" >
-
-    <button type="submit">Sign Up</button>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
 
 </form>

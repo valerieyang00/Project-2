@@ -3,12 +3,12 @@
 
 <form method="POST" action="/recommendations/<%=user.id%>/<%=activity.id%>">
     <label>title</label>
-    <input type="text" name="title">
-    <label>Rating (1-10)</label>
-    <input type="number" name="rating">
-    <label>Resource</label>
-    <input type="text" value="list any helpful resources" name="resource">
-    <label>content</label>
+    <input type="text" name="title" required>
+    <label>Rating (1-5)</label>
+    <input type="number" name="rating" required>
+    <label>Resource (optional)</label>
+    <input type="text" name="resource">
+    <label>content (optional)</label>
     <textarea name="content"></textarea>
     <button type="submit">Post</button>
 </form>
