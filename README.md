@@ -6,7 +6,7 @@ I'll be integrating the Bored API (http://www.boredapi.com/api/activity/) to bri
 * This API does not require a key, and I've tested its functionality.
 
 ## ERDs
-![ERDs](./wireframes/ERDs.png)
+![ERD](./wireframes/ERDs.png)
 
 ## RESTful Routing Chart
 | HTTP METHOD  | URL | CRUD | Response           | Notes |

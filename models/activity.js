@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       models.activity.belongsTo(models.user)
       models.activity.hasMany(models.log)
       models.activity.hasMany(models.recommendation)
+      models.activity.hasMany(models.feed)
     }
   }
   activity.init({

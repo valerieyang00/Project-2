@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       models.user.hasMany(models.activity)
       models.user.hasMany(models.log)
       models.user.hasMany(models.recommendation)
+      models.user.hasMany(models.feed)
+      models.user.hasMany(models.comment)
     }
   }
   user.init({

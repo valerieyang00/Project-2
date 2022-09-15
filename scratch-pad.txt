@@ -8,5 +8,7 @@ STRETCH:
 
 sequelize model:create --name recommendation --attributes userId:integer,activityId:integer,title:string,resource:text,content:text,rating:integer
 
-sequelize model:create --name comment --attributes userId:integer,recommendationId:integer,content:text
+sequelize model:create --name feed --attributes userId:integer,activityId:integer,content:text
+
+sequelize model:create --name comment --attributes userId:integer,feedId:integer,content:string
 
