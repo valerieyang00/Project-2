@@ -23,7 +23,8 @@
         <input hidden value="<%= type%>" name="type" />
         <button type="submit">Add</button>
             <% if(message) { %>
-                <p><%= message %></p>    
+                <div class="alert alert-success" role="alert">
+                    <%= message %> </div>
             <%}%>
     
     </form>

@@ -50,6 +50,7 @@ app.use('/users', require('./controllers/users'))
 app.use('/saved', require('./controllers/saved'))
 app.use('/recommendations', require('./controllers/recommendations'))
 
+
 //route definitions
 app.get('/', (req, res) => {
     res.render('home.ejs')
