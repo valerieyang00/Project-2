@@ -22,16 +22,19 @@
         <input hidden value="<%= data.activity%>" name="activity" />
         <input hidden value="<%= type%>" name="type" />
         <button type="submit">Add</button>
-            <% if(message) { %>
-                <div class="alert alert-success" role="alert">
-                    <%= message %> </div>
-            <%}%>
-    
+        
     </form>
     
     <form action="/<%=type%>" method="GET">
-        <button>Pass</button>
+        <button>Next</button>
     </form>
+    
+    <% if(message) { %>
+        <div class="alert alert-success" role="alert">
+            Successfully Saved! See <a href="/saved/all">here</a>. 
+            Click 'next' to keep going 
+        </div>
+    <%}%>
 <%} else {%>
     <h4>Please log in to your account!</h4>
 

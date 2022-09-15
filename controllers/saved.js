@@ -132,7 +132,7 @@ router.post('/', async (req, res) => {
                 completed: false
             }
         })
-        res.redirect(`/${req.body.type}?message=Successfully Saved!`)
+        res.redirect(`/${req.body.type}?message=saved`)
     } catch (err) {
         console.log(err)
         res.send('server error')
