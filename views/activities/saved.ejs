@@ -75,15 +75,15 @@
                 <button type="submit" class="btn btn-danger">delete</button>
             </form>
         </div>
-        <p>
-            <a href="/saved/logs/<%=save.id%>">Log your progress!</a>
-        </p>
-        <p>
-            <% if(save.participants > 1) {%>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active"><a href="/saved/logs/<%=save.id%>">Log your progress</a></li>
+              <li class="breadcrumb-item active">                
+                <% if(save.participants > 1) {%>
                 <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
-            <%}%>
-        </p>
-
+            <%}%></li>
+            </ol>
+          </nav>
         </ul>
     <%}}%>        
 <%})}%>
@@ -98,12 +98,15 @@
         <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
             <button type="submit" class="btn btn-danger">delete</button>
         </form>
-        <p>
-            <a href="/recommendations/new/<%=save.id%>">Click to Post recommendation!</a>
-        </p>
-        <p>
-            <a href="/saved/logs/<%=save.id%>">View logs</a>
-        </p>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active"><a href="/recommendations/new/<%=save.id%>">Click to Post recommendation</a></li>
+              <li class="breadcrumb-item active">                
+                <a href="/saved/logs/<%=save.id%>">View logs</a>
+            </li>
+            </ol>
+          </nav>
         </ul>
     <%}}%>        
 <%})}%>
