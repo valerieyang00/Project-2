@@ -1,6 +1,7 @@
 <h2>Recommendations Feed</h2>
 
 
+<a href="/recommendations/users/<%=user.id%>">your recommendations</a>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">View By Type:</a>
@@ -11,7 +12,7 @@
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Search Type
+                All
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/recommendations/education">education</a></li>
@@ -26,17 +27,21 @@
             </ul>
 
     </ul>
-    <a href="/recommendations/users/<%=user.id%>">your recommendations</a>
+
 </div>
 </div>
 </nav>
 
 <% recs.forEach(rec=> {%>
-    <h5>Post by: <%= rec.user.name%>
+    <h5>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)
     </h5>
     <h5>
-        <%= rec.title%>
+       For activity:"<%= rec.activity.activity%>"
     </h5>
+
+    <h6>
+        <%= rec.title%>
+    </h6>
     <p>
         <%= rec.content%>
     </p>
