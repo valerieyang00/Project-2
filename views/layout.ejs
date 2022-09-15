@@ -24,9 +24,8 @@
                 <!-- if the user is logged in -->
                 <!-- all data in res.locals is usable in layout -->
                 <% if (user) { %>
-                    <a class="nav-link" href="/saved/all">Saved</a>
-                    <a class="nav-link" href="/saved/completed">Completed</a>
-                    <a class="nav-link" href="/recommendations">Recommendations Feed</a>
+                    <a class="nav-link" href="/saved/all">Saved List</a>
+                    <a class="nav-link" href="/recommendations/all">Recommendations Feed</a>
                 </div>
                     <div class="nav justify-content-end">
                         <a class="nav-link" href="/users/profile">Logged in as <%= user.name %></a>

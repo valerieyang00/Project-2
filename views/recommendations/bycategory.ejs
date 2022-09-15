@@ -1,7 +1,0 @@
-<h3>Recommendations for <%= activitytype %></h3>
-<% recs.forEach(rec => {%>
-    <% if(activitytype === rec.activity.type) { %>
-        <h5><%= rec.title%> </h5>
-        <p><%= rec.content%></p>   
-    <%}})%>
-  

@@ -6,24 +6,14 @@ const methodOverride = require("method-override")
 const activity = require('../models/activity')
 router.use(methodOverride("_method"))
 
-router.get('/', async (req, res) => {
+
+router.get('/:type', async (req, res) => {
     try {
         const recs = await db.recommendation.findAll({
             include: [db.activity, db.user]
         })
-        res.render('recommendations/show.ejs', { recs: recs})
-      } catch (err) {
-        console.log(err)
-        res.send('server error')
-    }
-})
-router.get('/:type', async (req, res) => {
-    try {
-        const recs = await db.recommendation.findAll({
-            include: [db.activity]
-        })
         const type = req.params.type
-        res.render('recommendations/bycategory.ejs', { recs: recs, activitytype:type})
+        res.render('recommendations/show.ejs', { recs: recs, activitytype:type})
       } catch (err) {
         console.log(err)
         res.send('server error')

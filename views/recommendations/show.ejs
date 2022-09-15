@@ -1,50 +1,73 @@
+<% if(activitytype==="all" ) {%>
 <h2>Recommendations Feed</h2>
+<% } else {%>
+    <h3>Recommendations for <%= activitytype %></h3>
+<%}%>
 
 
 <a href="/recommendations/users/<%=user.id%>">your recommendations</a>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">View By Type:</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-<div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                All
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/recommendations/education">education</a></li>
-                <li><a class="dropdown-item" href="/recommendations/relaxation">relaxation</a></li>
-                <li><a class="dropdown-item" href="/recommendations/diy">diy</a></li>
-                <li><a class="dropdown-item" href="/recommendations/recreational">recreational</a></li>
-                <li><a class="dropdown-item" href="/recommendations/social">social</a></li>
-                <li><a class="dropdown-item" href="/recommendations/charity">charity</a></li>
-                <li><a class="dropdown-item" href="/recommendations/cooking">cooking</a></li>
-                <li><a class="dropdown-item" href="/recommendations/music">music</a></li>
-                <li><a class="dropdown-item" href="/recommendations/busywork">busywork</a></li>
+        <a class="navbar-brand" href="#">View By Type:</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <%=activitytype%>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/recommendations/education">education</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/relaxation">relaxation</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/diy">diy</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/recreational">recreational</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/social">social</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/charity">charity</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/cooking">cooking</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/music">music</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/busywork">busywork</a></li>
+                        <li><a class="dropdown-item" href="/recommendations/all">all</a></li>
+                    </ul>
+
             </ul>
 
-    </ul>
-
-</div>
-</div>
+        </div>
+    </div>
 </nav>
 
-<% recs.forEach(rec=> {%>
-    <h5>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)
-    </h5>
-    <h5>
-       For activity:"<%= rec.activity.activity%>"
-    </h5>
+<% if(activitytype==="all" ) {%>
+    <% recs.forEach(rec=> {%>
+        <h5>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)
+        </h5>
+        <h5>
+            For activity:"<%= rec.activity.activity%>"
+        </h5>
 
-    <h6>
-        "<%= rec.title%>"
-    </h6>
-    <p>
-        <%= rec.content%>
-    </p>
-    <%})%>
+        <h6>
+            "<%= rec.title%>"
+        </h6>
+        <p>
+            <%= rec.content%>
+        </p>
+        <%})}%>
 
-  
+            <% if(activitytype !== "all" ) {%>
+                <% recs.forEach(rec=> {%>
+                    <% if(activitytype===rec.activity.type) { %>
+                        <h5>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)
+                        </h5>
+                        <h5>
+                            For activity:"<%= rec.activity.activity%>"
+                        </h5>
+
+                        <h6>
+                            "<%= rec.title%>"
+                        </h6>
+                        <p>
+                            <%= rec.content%>
+                        </p>
+                        <%}})}%>
