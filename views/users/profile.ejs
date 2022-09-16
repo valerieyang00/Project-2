@@ -1,10 +1,19 @@
-<h2>Welcome <%= user.name%>!</h2>
 
-<img src="../<%=user.photo%>" alt="profileImg" width="300"/>
-<p>username: <%= user.name %></p>
-<p>email: <%= user.email %></p>
-<p>password: *******</p>
-<p>city: <%= user.city %></p>
-<p>state: <%= user.state %></p>
 
-<a href="/users/profile/<%=user.id%>">edit</a>
+<div class="card" style="width: 25rem;">
+    <img src="../<%=user.photo%>" class="card-img-top" alt="Add a Photo" width="300"/>
+    <div class="card-body">
+      <h5 class="card-title">Welcome!</h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>
+      <ul class="card-text">
+        <li>Username: <%= user.name %></li>
+        <li>Email: <%= user.email %></li>
+        <li>Password: *******</li>
+        <li>City: <%= user.city %></li>
+        <li>State: <%= user.state %></li>
+      </ul>
+      <a href="/users/profile/<%=user.id%>" class="card-link">edit profile</a>
+      <a href="#" class="card-link">change password</a>
+    </div>
+  </div>
+
