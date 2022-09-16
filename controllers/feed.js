@@ -42,7 +42,8 @@ router.post('/:activityid', async (req, res) => {
         const newFeed = await db.feed.create({
                 activityId: req.params.activityid,
                 userId: req.body.userId,
-                content:req.body.content
+                content:req.body.content,
+                status: req.body.status
         })
         res.redirect('/feed/all')
     } catch (err) {
