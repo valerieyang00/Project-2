@@ -25,17 +25,16 @@
 </div>
 </nav>
 
-<% let num=0 %>
 <% if(param === "all" || param === "tostart") { %>
+<% let num=0 %>
 <h4>Not Yet Started:</h4>
 <% saved.forEach(save => { %>
 <% if(user.id === save.userId) {%>
     <% if(!save.in_progress) {%>
-        <%=console.log(num)%>
         <div class="accordion accordion-flush" id="accordionFlushExample_<%= num %>">
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button" type="button" aria-expanded= "false" aria-controls="collapseExample_<%= num %>" data-bs-toggle="collapse" data-bs-target="#collapseExample_<%= num %>">
+                <button class="accordion-button collapsed" type="button" aria-expanded= "false" aria-controls="collapseExample_<%= num %>" data-bs-toggle="collapse" data-bs-target="#collapseExample_<%= num %>">
                    <li>"<%= save.activity%>"</li>
                 </button>
               </h2>
@@ -69,18 +68,19 @@
 <%})}%>
 
 <% if(param === "all" || param === "inprogress") { %>
+<% let num = 0 %>
 <h4>In Progress:</h4>
 <% saved.forEach(save => { %>
     <% if(user.id === save.userId) {%>
     <% if(save.in_progress && !save.completed) {%>
-        <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion accordion-flush" id="accordionFlushExample_<%= num %>">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" aria-expanded= "false" aria-controls="collapseExample_<%= num %>" data-bs-toggle="collapse" data-bs-target="#collapseExample_<%= num %>">
                     <li><%= save.activity%></li>
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="collapse" id="collapseExample_<%= num %>">
                 <div class="accordion-body">                  
                     <div class="nav">
                         <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
@@ -105,22 +105,24 @@
                 </div>
               </div>
             </div>
-    <%}}%>        
+    <%}}%>   
+    <%num++;%>     
 <%})}%>
 
 <% if(param === "all" || param === "completed") { %>
+    <% let num = 0 %>
 <h4>Completed: </h4>
 <% saved.forEach(save => { %>
     <% if(user.id === save.userId) {%>
     <% if(save.completed) {%>
-        <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion accordion-flush" id="accordionFlushExample_<%= num %>">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" aria-expanded= "false" aria-controls="collapseExample_<%= num %>" data-bs-toggle="collapse" data-bs-target="#collapseExample_<%= num %>">
                   <li><%= save.activity%></li>
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="collapse" id="collapseExample_<%= num %>">
                 <div class="accordion-body">
                   <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
                       <button type="submit" class="btn btn-danger">delete</button>
