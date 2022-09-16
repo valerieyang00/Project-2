@@ -31,30 +31,39 @@
 <% saved.forEach(save => { %>
 <% if(user.id === save.userId) {%>
     <% if(!save.in_progress) {%>
-        <ul>
-        <li>"<%= save.activity%>"</li>
-        <div class="nav">
-            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-                <input hidden value="in_progress" name="name">
-                <button type="submit" class="btn btn-primary">in progress</button>
-            </form>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" aria-expanded= "false" aria-controls="collapseExample" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+                   <li>"<%= save.activity%>"</li>
+                </button>
+              </h2>
+              <div class="collapse" id="collapseExample">
+                <div class="accordion-body">
+                  <div class="nav">
+                      <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                          <input hidden value="in_progress" name="name">
+                          <button type="submit" class="btn btn-primary">in progress</button>
+                      </form>
+          
+                      <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                          <input hidden value="completed" name="name">
+                          <button type="submit" class="btn btn-success">completed</button>
+                      </form>
+              
+                      <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                          <button type="submit" class="btn btn-danger">delete</button>
+                      </form>
+                      <div>
+                          <% if(save.participants > 1) {%>
+                              <p><a href="/feed/new/<%=save.id%>">Post feed to invite others</a></p>
+                          <%}%>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-                <input hidden value="completed" name="name">
-                <button type="submit" class="btn btn-success">completed</button>
-            </form>
-    
-            <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-                <button type="submit" class="btn btn-danger">delete</button>
-            </form>
-        </div>
-        <p>
-            <% if(save.participants > 1) {%>
-                <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
-            <%}%>
-        </p>
-            
-    </ul>
     <%}}%>        
 <%})}%>
 
@@ -63,29 +72,39 @@
 <% saved.forEach(save => { %>
     <% if(user.id === save.userId) {%>
     <% if(save.in_progress && !save.completed) {%>
-        <ul>
-        <li><%= save.activity%></li>
-        <div class="nav">
-            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-                <input hidden value="completed" name="name">
-                <button type="submit" class="btn btn-success">completed</button>
-            </form>
-            
-            <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-                <button type="submit" class="btn btn-danger">delete</button>
-            </form>
-        </div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active"><a href="/saved/logs/<%=save.id%>">Log your progress</a></li>
-              <% if(save.participants > 1) {%>
-              <li class="breadcrumb-item active">                
-                  <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
-            </li>
-                  <%}%>
-            </ol>
-          </nav>
-        </ul>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    <li><%= save.activity%></li>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">                  
+                    <div class="nav">
+                        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                            <input hidden value="completed" name="name">
+                            <button type="submit" class="btn btn-success">completed</button>
+                        </form>
+                        
+                        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                            <button type="submit" class="btn btn-danger">delete</button>
+                        </form>
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item active"><a href="/saved/logs/<%=save.id%>">Log your progress</a></li>
+                          <% if(save.participants > 1) {%>
+                          <li class="breadcrumb-item active">                
+                              <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+                        </li>
+                              <%}%>
+                        </ol>
+                      </nav>
+                </div>
+              </div>
+            </div>
+
     <%}}%>        
 <%})}%>
 
@@ -94,21 +113,30 @@
 <% saved.forEach(save => { %>
     <% if(user.id === save.userId) {%>
     <% if(save.completed) {%>
-        <ul>
-        <li><%= save.activity%></li>
-        <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-            <button type="submit" class="btn btn-danger">delete</button>
-        </form>
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active"><a href="/recommendations/new/<%=save.id%>">Click to Post recommendation</a></li>
-              <li class="breadcrumb-item active">                
-                <a href="/saved/logs/<%=save.id%>">View logs</a>
-            </li>
-            </ol>
-          </nav>
-        </ul>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  <li><%= save.activity%></li>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                      <button type="submit" class="btn btn-danger">delete</button>
+                  </form>
+          
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item active"><a href="/recommendations/new/<%=save.id%>">Click to Post recommendation</a></li>
+                        <li class="breadcrumb-item active">                
+                          <a href="/saved/logs/<%=save.id%>">View logs</a>
+                      </li>
+                      </ol>
+                    </nav>
+                </div>
+              </div>
+            </div>
     <%}}%>        
 <%})}%>
 
