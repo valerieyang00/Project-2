@@ -1,47 +1,48 @@
+<div class="d-flex justify-content-center">
+    <% if(user) { %>
+        <div class="jumbotron">
+            <h3 class="display-4 text-center">
+                <%= type %>
+            </h3>
+            <h4 class="lead text-center">
+                "<%= data.activity%>"
+            </h4>
+            <hr class="my-4">
+            <div class="text-center">
 
-<% if(user) { %>
-    <div class="jumbotron">
-        <h3 class="display-4">
-            <%= type %>
-        </h3>
-        <h4 class="lead">
-            "<%= data.activity%>"
-        </h4>
-        <hr class="my-4">
-        <ul>
-            <li>participants: <%= data.participants%>
-            </li>
-            <li>accessibility(scale 0-1): <%= data.accessibility%>
-            </li>
-            <li>price(scale 0-1): <%= data.price%>
-            </li>
-        </ul>
-
-        <div class="nav">
-            <form action="/saved" method="POST">
-                <input hidden value="<%= data.participants%>" name="participants" />
-                <input hidden value="<%= data.accessibility%>" name="accessibility" />
-                <input hidden value="<%= data.price%>" name="price" />
-                <input hidden value="<%= data.activity%>" name="activity" />
-                <input hidden value="<%= type%>" name="type" />
-                <button class="btn btn-primary" type="submit">Add</button>
+                <ul>participants: <%= data.participants%>
+                </ul>
+                <ul>accessibility(scale 0-1): <%= data.accessibility%>
+                </ul>
+                <ul>price(scale 0-1): <%= data.price%>
+                </ul>
+                <div class="nav">
+                    <form action="/saved" method="POST">
+                        <input hidden value="<%= data.participants%>" name="participants" />
+                        <input hidden value="<%= data.accessibility%>" name="accessibility" />
+                        <input hidden value="<%= data.price%>" name="price" />
+                        <input hidden value="<%= data.activity%>" name="activity" />
+                        <input hidden value="<%= type%>" name="type" />
+                        <button class="btn btn-primary" type="submit">Add</button>
+            
+                    </form>
+            
+                    <form action="/<%=type%>" method="GET">
+                        <button class="btn btn-secondary">Next</button>
+                    </form>
+                </div>
+            </div>   
     
-            </form>
+        </div>
     
-            <form action="/<%=type%>" method="GET">
-                <button class="btn btn-secondary">Next</button>
-            </form>
-        </div>
-
-    </div>
-
-    <% if(message) { %>
-        <div class="alert alert-success" role="alert">
-            Successfully Saved! See <a href="/saved/all">here</a>.
-            Click 'next' to keep going
-        </div>
-        <%}%>
-            <%} else {%>
-                <h4>Please log in to your account!</h4>
-
-                <%}%>
+        <% if(message) { %>
+            <div class="alert alert-success" role="alert">
+                Successfully Saved! See <a href="/saved/all">here</a>.
+                Click 'next' to keep going
+            </div>
+            <%}%>
+                <%} else {%>
+                    <h4>Please log in to your account!</h4>
+    
+                    <%}%>
+</div>
