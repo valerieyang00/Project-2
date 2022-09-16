@@ -117,7 +117,6 @@ router.get('/profile', async (req, res) => {
                 id: res.locals.user.id
             }
         })
-        console.log(userData.photo)
         res.render('users/profile.ejs', {
             user: res.locals.user, image: userData.photo
         })
