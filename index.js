@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 //controllers set up
 app.use('/users', require('./controllers/users'))
 app.use('/saved', require('./controllers/saved'))
-app.use('/recommendations', require('./controllers/recommendations'))
+app.use('/reviews', require('./controllers/reviews'))
 app.use('/feed', require('./controllers/feed'))
 
 

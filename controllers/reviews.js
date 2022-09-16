@@ -13,7 +13,7 @@ router.get('/:type', async (req, res) => {
             include: [db.activity, db.user]
         })
         const type = req.params.type
-        res.render('recommendations/show.ejs', { recs: recs, activitytype:type})
+        res.render('reviews/show.ejs', { recs: recs, activitytype:type})
       } catch (err) {
         console.log(err)
         res.send('server error')
@@ -29,7 +29,7 @@ router.get('/new/:activityid', async (req, res) => {
             include: [db.user]
         })
         console.log(activity)
-        res.render('recommendations/new.ejs', { activity:activity, user: activity.user })
+        res.render('reviews/new.ejs', { activity:activity, user: activity.user })
     } catch (err) {
         console.log(err)
         res.send('server error')
@@ -46,7 +46,7 @@ router.post('/:userid/:activityid', async (req, res) => {
             content: req.body.content,
             rating: req.body.rating
         })
-        res.redirect(`/recommendations/users/${req.params.userid}`)
+        res.redirect(`/reviews/users/${req.params.userid}`)
     } catch (err) {
         console.log(err)
         res.send('server error')
@@ -61,7 +61,7 @@ router.get('/users/:userid', async (req, res) => {
             },
             include: [db.activity]
         })
-        res.render('recommendations/user.ejs', { recs: recs, activity: recs.activity })
+        res.render('reviews/user.ejs', { recs: recs, activity: recs.activity })
     } catch (err) {
         console.log(err)
         res.send('server error')
@@ -75,7 +75,7 @@ router.delete('/users/:userid/:activityid', async (req, res) => {
                 activityId: req.params.activityid
             }
         })
-        res.redirect(`/recommendations/users/${req.params.userid}`)
+        res.redirect(`/reviews/users/${req.params.userid}`)
     } catch (err) {
         console.log(err)
         res.send('server error')
