@@ -109,8 +109,13 @@ router.delete('/users/:userid/:feedid', async (req, res) => {
         const feedDelete = await db.feed.destroy({
             where: {
                 id: req.params.feedid
-        }})
-    
+            }})
+
+        const commentDelete = await db.comment.destroy({
+            where: {
+                feedId: req.params.feedid
+            }
+        })    
         res.redirect(`/feed/users/${req.params.userid}`)
     } catch (err) {
         console.log(err)
