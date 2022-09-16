@@ -2,44 +2,25 @@
     
     <a href="/feed/users/<%=user.id%>">your posts</a>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">View By City:</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            All
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/recommendations/education">education</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/relaxation">relaxation</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/diy">diy</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/recreational">recreational</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/social">social</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/charity">charity</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/cooking">cooking</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/music">music</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/busywork">busywork</a></li>
-                            <li><a class="dropdown-item" href="/recommendations/all">all</a></li>
-                        </ul>
-    
-                </ul>
+        <div class="container-fluid d-flex justify-content-sm-start">
+            <a class="navbar-brand">Search By City:</a>
+                <form method="GET" action="/feed/all?city=" class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="city">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
     
             </div>
-        </div>
     </nav>
     
-    <% if(params==="all" ) {%>
+  
         <% feeds.forEach(feed => {%>
             <h5>Posted by: <%= feed.user.name%> (<%= moment(feed.createdAt).calendar()%>)
             </h5>
             <h5>
                 Status:"<%= feed.status%>"
+            </h5>
+            <h5>
+                Location:"<%= feed.user.city%>, <%= feed.user.state%>"
             </h5>
             <h5>
                 For activity:"<%= feed.activity.activity%>"
@@ -63,6 +44,6 @@
                 <input name="content" type="text" placeholder="leave a comment">
                 <button type="submit">submit</button>
             </form>
-            <%})}%>
+            <%})%>
     
   

@@ -6,7 +6,7 @@ const methodOverride = require("method-override")
 // const activity = require('../models/activity')
 router.use(methodOverride("_method"))
 
-router.get('/:search', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const feeds = await db.feed.findAll({
             include: [db.activity, db.user]
@@ -16,6 +16,23 @@ router.get('/:search', async (req, res) => {
         })
         const params = req.params.search
         res.render('feed/show.ejs', { params:params, feeds:feeds, user: res.locals.user, comments:comments})
+      } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
+router.get('/all', async (req, res) => {
+    try {
+        console.log(req.query.city)
+        // const feeds = await db.feed.findAll({
+        //     include: [db.activity, db.user]
+        // })
+        // const comments = await db.comment.findAll({
+        //     include: [db.feed, db.user]
+        // })
+        // const params = req.params.search
+        // res.render('feed/show.ejs', { params:params, feeds:feeds, user: res.locals.user, comments:comments})
       } catch (err) {
         console.log(err)
         res.send('server error')

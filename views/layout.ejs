@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light nav nav-tabs">
+    <nav class="navbar navbar-expand-lg nav nav-tabs" style="background-color: #e3f2fd">
         <div class="container-fluid">
             <div class="nav justify-content-start">
             <a class="navbar-brand" href="/">Home</a>
@@ -31,7 +31,7 @@
                 <% if (user) { %>
                     <a class="nav-link" href="/saved/all">Saved List</a>
                     <a class="nav-link" href="/recommendations/all">Recommendations</a>
-                    <a class="nav-link" href="/feed/all">Feed</a>
+                    <a class="nav-link" href="/feed">Feed</a>
                 </div>
                     <div class="nav justify-content-end">
                         <a class="nav-link" href="/users/profile">Logged in as <%= user.name %></a>
