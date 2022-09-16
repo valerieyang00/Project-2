@@ -1,0 +1,51 @@
+<h2>Invite or Join others</h2>
+
+<h3>Search results for: <%=search%> </h3>
+    
+    <a href="/feed/users/<%=user.id%>">your posts</a>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid d-flex justify-content-sm-start">
+            <a class="navbar-brand">Search By City:</a>
+                <form method="GET" action="/feed/all?city=" class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="city">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+    
+            </div>
+    </nav>
+    
+  
+        <% feeds.forEach(feed => {%>
+            <h5>Posted by: <%= feed.user.name%> (<%= moment(feed.createdAt).calendar()%>)
+            </h5>
+            <h5>
+                Status:"<%= feed.status%>"
+            </h5>
+            <h5>
+                Location:"<%= feed.user.city%>, <%= feed.user.state%>"
+            </h5>
+            <h5>
+                For activity:"<%= feed.activity.activity%>"
+            </h5>
+    
+            <h6>
+                # of People: <%= feed.activity.participants%>
+            </h6>
+            <p>
+                <%= feed.content%>
+            </p>
+            <% comments.forEach(comment => {%>
+                <% if(feed.id === comment.feedId) { %>
+                    <%=comment.user.name%>: <%=comment.content%>
+                <%}%>
+            
+            <%})%>
+            <form method="POST" action="/feed/comments/<%=feed.id%>" class="form-inline">
+                <input hidden value="<%=user.id%>" name="userId">
+                <label for="content"><%=user.name%>:</label>
+                <input name="content" type="text" placeholder="leave a comment">
+                <button type="submit">submit</button>
+            </form>
+            <%})%>
+    
+  

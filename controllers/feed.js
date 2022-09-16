@@ -5,6 +5,7 @@ const db = require('../models')
 const methodOverride = require("method-override")
 // const activity = require('../models/activity')
 router.use(methodOverride("_method"))
+const { Op } = require("sequelize");
 
 router.get('/', async (req, res) => {
     try {
@@ -14,8 +15,7 @@ router.get('/', async (req, res) => {
         const comments = await db.comment.findAll({
             include: [db.feed, db.user]
         })
-        const params = req.params.search
-        res.render('feed/show.ejs', { params:params, feeds:feeds, user: res.locals.user, comments:comments})
+        res.render('feed/show.ejs', {feeds:feeds, user: res.locals.user, comments:comments})
       } catch (err) {
         console.log(err)
         res.send('server error')
@@ -24,15 +24,19 @@ router.get('/', async (req, res) => {
 
 router.get('/all', async (req, res) => {
     try {
-        console.log(req.query.city)
-        // const feeds = await db.feed.findAll({
-        //     include: [db.activity, db.user]
-        // })
-        // const comments = await db.comment.findAll({
-        //     include: [db.feed, db.user]
-        // })
-        // const params = req.params.search
-        // res.render('feed/show.ejs', { params:params, feeds:feeds, user: res.locals.user, comments:comments})
+        const search = req.query.city
+        const feeds = await db.feed.findAll({
+            where: {
+                city: {
+                    [Op.iLike] : `%${search}%`
+                }
+            },
+            include: [db.activity, db.user]
+        })
+        const comments = await db.comment.findAll({
+            include: [db.feed, db.user]
+        })
+        res.render('feed/search.ejs', {feeds:feeds, search:search, comments:comments})
       } catch (err) {
         console.log(err)
         res.send('server error')
@@ -60,9 +64,11 @@ router.post('/:activityid', async (req, res) => {
                 activityId: req.params.activityid,
                 userId: req.body.userId,
                 content:req.body.content,
-                status: req.body.status
+                status: req.body.status,
+                city: req.body.city,
+                state: req.body.state
         })
-        res.redirect('/feed/all')
+        res.redirect('/feed')
     } catch (err) {
         console.log(err)
         res.send('server error')
@@ -116,7 +122,9 @@ router.put('/:feedid', async (req, res) => {
     try{
     const feedUpdate = await db.feed.update({
         content: req.body.content,
-        status: req.body.status
+        status: req.body.status,
+        city: req.body.city,
+        state: req.body.state
     }, {
         where: {
             id: req.params.feedid
