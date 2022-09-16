@@ -41,18 +41,19 @@
 
 <% if(activitytype==="all" ) {%>
     <% recs.forEach(rec=> {%>
-        <h5>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)
-        </h5>
         <h5>
-            For activity:"<%= rec.activity.activity%>"
-        </h5>
-
-        <h6>
-            "<%= rec.title%>" (rating: <%=rec.rating%>)
-        </h6>
-        <p>
-            <%= rec.content%>
-        </p>
+            For activity:"<%= rec.activity.activity%>"  (rating: <%=rec.rating%>) %>
+        </h5>    
+    <h5>
+        "<%= rec.title%>" 
+    </h5>
+    <p>
+        <%= rec.resource%>
+    </p>
+    <p>
+        <%= rec.content%>
+    </p>
+    <h6>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)</h6>
         <%})}%>
 
             <% if(activitytype !== "all" ) {%>

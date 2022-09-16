@@ -1,7 +1,9 @@
 
 <div class="container d-flex justify-content-center">
     <div class="card" style="width: 25rem;">
-        <img src="../<%=user.photo%>" class="card-img-top" alt="Add a Photo" width="300"/>
+        <%if (image) {%>
+            <img src="../<%=user.photo%>" class="card-img-top" alt="Photo" width="300"/>
+        <%}%>
         <div class="card-body">
           <h5 class="card-title">Welcome!</h5>
           <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>

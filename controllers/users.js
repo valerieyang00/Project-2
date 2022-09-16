@@ -105,17 +105,27 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/profile', (req, res) => {
+router.get('/profile', async (req, res) => {
+    try {
     // if the user is not logged in, redirect to login form
     if (!res.locals.user) {
         res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource')
     } else {
         // otherwise, show them their profile
+        const userData = await db.user.findOne({
+            where: {
+                id: res.locals.user.id
+            }
+        })
+        console.log(userData.photo)
         res.render('users/profile.ejs', {
-            user: res.locals.user
+            user: res.locals.user, image: userData.photo
         })
     }
-})
+} catch(err){
+    console.log(err)
+    res.send('server error')
+}})
 
 router.get('/profile/:id', (req, res) => {
     // if the user is not logged in, redirect to login form
