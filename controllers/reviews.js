@@ -10,8 +10,10 @@ router.use(methodOverride("_method"))
 router.get('/:type', async (req, res) => {
     try {
         const recs = await db.recommendation.findAll({
+            order: [['createdAt', 'DESC']],
             include: [db.activity, db.user]
-        })
+        }
+        )
         const type = req.params.type
         res.render('reviews/show.ejs', { recs: recs, activitytype:type})
       } catch (err) {
