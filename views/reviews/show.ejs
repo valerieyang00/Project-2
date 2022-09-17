@@ -56,9 +56,9 @@
                             <h5>
                                 "<%= rec.title%>" (rating: <%=rec.rating%>) 
                             </h5> 
-                        <small class="card-text" style="margin-left: 3rem">
+                        <small class="card-text" style="margin-left: 2rem">
                             <%= rec.resource%> <br></small>
-                        <small class="card-text" style="margin-left: 3rem">
+                        <small class="card-text" style="margin-left: 2rem">
                             <%= rec.content%>
                         </small>      
                             <div class="d-flex justify-content-end">
@@ -78,24 +78,32 @@
             <% recs.forEach(rec=> {%>
                 <% if(activitytype===rec.activity.type) { %>
                     <div class="d-flex justify-content-center">
-                        <div class="card" style="width: 60vw;" >
-                             <div class="card-header">
+                        <div class="card" style="width: 60vw;">
+                            <div class="card-header">
                                 <h5>
-                                "<%= rec.activity.activity%>"  (rating: <%=rec.rating%>) %>
-                                </h5>  
+                                    "<%= rec.activity.activity%>" 
+                                    <small class="d-flex justify-content-end text-muted">
+                                        Posted by: <%= rec.user.name%></small>
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <h5>
+                                        "<%= rec.title%>" (rating: <%=rec.rating%>) 
+                                    </h5> 
+                                <small class="card-text" style="margin-left: 2rem">
+                                    <%= rec.resource%> <br></small>
+                                <small class="card-text" style="margin-left: 2rem">
+                                    <%= rec.content%>
+                                </small>      
+                                    <div class="d-flex justify-content-end">
+                                          <cite title="date">
+                                              <small class="text-muted"> 
+                                              <%=  moment(rec.createdAt).fromNow()%></small> 
+                                          </cite>                                
+                                    </div>
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                            <h5>
-                                                "<%= rec.title%>" 
-                                            </h5>                    
-                                                <%= rec.resource%>
-                                                <%= rec.content%>
-                                        </li>
-                                        <div class="card-footer" style="height: 2.5rem">
-                                            <h6>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)</h6>
-                                        </div>
-                                        <%}})}%>
+                                <%}})}%>
                                 </div>
                             </div>
 </div>

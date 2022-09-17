@@ -61,6 +61,7 @@ router.get('/users/:userid', async (req, res) => {
             where: {
                 userId: req.params.userid
             },
+            order: [['createdAt', 'DESC']],
             include: [db.activity]
         })
         res.render('reviews/user.ejs', { recs: recs, activity: recs.activity })
