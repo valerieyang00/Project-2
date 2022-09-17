@@ -30,7 +30,6 @@ router.get('/new/:activityid', async (req, res) => {
             },
             include: [db.user]
         })
-        console.log(activity)
         res.render('reviews/new.ejs', { activity:activity, user: activity.user })
     } catch (err) {
         console.log(err)

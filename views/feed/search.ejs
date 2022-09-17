@@ -15,37 +15,31 @@
     </nav>
     
   
+    <div id="content" style="margin-top: 3vh;">
         <% feeds.forEach(feed => {%>
-            <h5>Posted by: <%= feed.user.name%> (<%= moment(feed.createdAt).calendar()%>)
-            </h5>
-            <h5>
-                Status:"<%= feed.status%>"
-            </h5>
-            <h5>
-                Location:"<%= feed.user.city%>, <%= feed.user.state%>"
-            </h5>
-            <h5>
-                For activity:"<%= feed.activity.activity%>"
-            </h5>
-    
-            <h6>
-                # of People: <%= feed.activity.participants%>
-            </h6>
-            <p>
-                <%= feed.content%>
-            </p>
-            <% comments.forEach(comment => {%>
-                <% if(feed.id === comment.feedId) { %>
-                    <%=comment.user.name%>: <%=comment.content%>
-                <%}%>
-            
-            <%})%>
-            <form method="POST" action="/feed/comments/<%=feed.id%>" class="form-inline">
-                <input hidden value="<%=user.id%>" name="userId">
-                <label for="content"><%=user.name%>:</label>
-                <input name="content" type="text" placeholder="leave a comment">
-                <button type="submit">submit</button>
-            </form>
-            <%})%>
-    
+         <div class="card" style="width: 60vw;">
+             <div class="card-body">
+               <h5 class="card-title">"<%= feed.activity.activity%>" Status:"<%= feed.status%>"</h5>
+               <h6 class="card-subtitle mb-2 text-muted">Location: <%= feed.user.city%>, <%= feed.user.state%> <br># of People: <%= feed.activity.participants%></h6>
+               <p class="card-text"><%= feed.content%></p>
+               <a href="#" class="card-link">Card link</a>
+               <a href="#" class="card-link">Another link</a>
+               <small class="text-muted">Posted by: <%= feed.user.name%> (<%= moment(feed.createdAt).fromNow()%>)</small>
+             </div>
+           </div>
+         <% comments.forEach(comment => {%>
+             <% if(feed.id === comment.feedId) { %>
+                 <%=comment.user.name%>: <%=comment.content%>
+             <%}%>
+         
+         <%})%>
+         <form method="POST" action="/feed/comments/<%=feed.id%>" class="form-inline">
+             <input hidden value="<%=user.id%>" name="userId">
+             <label for="content"><%=user.name%>:</label>
+             <input name="content" type="text" placeholder="leave a comment">
+             <button type="submit">submit</button>
+         </form>
+         <%})%>
+
+ </div>
   

@@ -10,6 +10,9 @@ const { Op } = require("sequelize");
 router.get('/', async (req, res) => {
     try {
         const feeds = await db.feed.findAll({
+            order: [
+                ['createdAt', 'DESC'],
+                ['status', 'DESC']],
             include: [db.activity, db.user]
         })
         const comments = await db.comment.findAll({
@@ -31,6 +34,9 @@ router.get('/all', async (req, res) => {
                     [Op.iLike] : `%${search}%`
                 }
             },
+            order: [
+                ['createdAt', 'DESC'],
+                ['status', 'DESC']],
             include: [db.activity, db.user]
         })
         const comments = await db.comment.findAll({
