@@ -60,17 +60,17 @@
                                     </a>
                                     </li>
                                 </ol>
-                              </nav>        
+                              </nav>         
                         </div>
                         <% if(save.participants > 1) {%>
                             <li>
-                                Post in <a href="/feed/new/<%=save.id%>">MeetUp</a>
+                                Post in <a href="/feed/new/<%=save.id%>">MeetUp</a> to invite others
+                            </li>
                             <%}%>
-                            
+
                                   <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
                                       <button style="margin-top:1em" type="submit" class="btn btn-danger btn-sm">delete</button>
                                   </form>
-                            </li>
                     </div>
                   </div>
                 </div>
@@ -92,26 +92,30 @@
                     </button>
                   </h2>
                   <div class="collapse" id="collapseExample_<%= num %>">
-                    <div class="accordion-body">                  
-                        <div class="nav">
-                            <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
-                                <input hidden value="completed" name="name">
-                                <button type="submit" class="btn btn-success">completed</button>
-                            </form>
-                            
-                            <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-                                <button type="submit" class="btn btn-danger">delete</button>
-                            </form>
+                    <div class="accordion-body" style="margin-left:2rem">
+                        <div class="nav" style="margin-bottom:-1.5em">
+                            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item active"><a aria-current="page"><strong>Mark as</strong></a></li>
+                                    <li class="breadcrumb-item">
+                                        <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
+                                            <input hidden value="completed" name="name">
+                                            <button style="margin-top:-3.2em" type="submit" class="btn btn-link">Completed</button>
+                                        </form>                      
+                                    </li>
+                                </ol>
+                              </nav>                          
                         </div>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item active"><a href="/saved/logs/<%=save.id%>">Log your progress</a></li>
-                              <% if(save.participants > 1) {%>
-                              <li class="breadcrumb-item active">                
-                                  <p>Post in <a href="/feed/new/<%=save.id%>">MeetUp</a></p>
-                            </li>
-                                  <%}%>
-                            </ol>
+                                <li>Log your<a href="/saved/logs/<%=save.id%>"> Progress</a></li>
+                                <% if(save.participants > 1) {%>
+                                    <li>
+                                        Post in <a href="/feed/new/<%=save.id%>">MeetUp</a> to invite others
+                                    </li>
+                                    <%}%>
+                                </ol>
+                                <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                                    <button type="submit" class="btn btn-danger btn-sm" style="margin-top:1em">delete</button>
+                                </form>
                           </nav>
                     </div>
                   </div>
@@ -134,18 +138,18 @@
                     </button>
                   </h2>
                   <div class="collapse" id="collapseExample_<%= num %>">
-                    <div class="accordion-body">
-                      <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-                          <button type="submit" class="btn btn-danger">delete</button>
-                      </form>
-              
-                      <nav aria-label="breadcrumb">
-                          <ol class="breadcrumb">
-                            <li class="breadcrumb-item active"><a href="/reviews/new/<%=save.id%>">Write a review</a></li>
-                            <li class="breadcrumb-item active">                
-                              <a href="/saved/logs/<%=save.id%>">View logs</a>
-                          </li>
-                          </ol>
+                    <div class="accordion-body" style="margin-left:2rem">
+                        
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active"><a href="/reviews/new/<%=save.id%>">Write a review</a></li>
+                                <li class="breadcrumb-item active">                
+                                    <a href="/saved/logs/<%=save.id%>">View logs</a>
+                                </li>
+                            </ol>
+                            <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                            </form>
                         </nav>
                     </div>
                   </div>
