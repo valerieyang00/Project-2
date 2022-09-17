@@ -1,24 +1,26 @@
 
-<div class="container d-flex justify-content-center">
-    <div class="card" style="width: 25rem;">
-        <%if (image) {%>
-            <img src="../<%=user.photo%>" class="card-img-top" alt="Photo" width="300"/>
-        <%}%>
-        <div class="card-body">
-          <h5 class="card-title">Welcome!</h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>
-          <ul class="card-text">
-            <li>Username: <%= user.name %></li>
-            <li>Email: <%= user.email %></li>
-            <li>Password: *******</li>
-            <li>City: <%= user.city %></li>
-            <li>State: <%= user.state %></li>
-          </ul>
-          <div class="d-flex justify-content-center">
-              <a href="/users/profile/<%=user.id%>" class="card-link">edit profile</a>
-              <a href="#" class="card-link">change password</a>
-          </div>
-        </div>
-      </div>
-</div>
+   <div id="saved_section">
+       <div class="container d-flex justify-content-center">
+           <div class="card" style="width: 25rem;">
+               <%if (image) {%>
+                   <img src="../<%=user.photo%>" class="card-img-top" alt="Photo" width="300"/>
+               <%}%>
+               <div class="card-body">
+                 <h5 class="card-title">Welcome!</h5>
+                 <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>
+                 <ul class="card-text">
+                   <li>Username: <%= user.name %></li>
+                   <li>Email: <%= user.email %></li>
+                   <li>Password: *******</li>
+                   <li>City: <%= user.city %></li>
+                   <li>State: <%= user.state %></li>
+                 </ul>
+                 <div class="d-flex justify-content-center">
+                     <a href="/users/profile/<%=user.id%>" class="card-link">edit profile</a>
+                     <a href="#" class="card-link">change password</a>
+                 </div>
+               </div>
+             </div>
+       </div>
+   </div>
 

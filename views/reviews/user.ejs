@@ -2,13 +2,29 @@
 <h4>Reviews Posted by you</h4>
 
 
-<% if(user) { %>
-    <% recs.forEach(rec => { %>
-        <h5>For activity: "<%= rec.activity.activity%>"</h5>
-        <h5><%= rec.title%> (rating: <%=rec.rating%>)</h5>
-        <p><%= rec.content%></p>
-
-        <form method="POST" action ="/recommendations/users/<%= rec.userId%>/<%=rec.activityId%>?_method=DELETE">
-            <input type="submit" value="delete post">
-        </form>
-    <%})}%>
+    <div id="saved_section">
+        <% if(user) {%>
+            <% recs.forEach(rec=> {%>
+                <div class="d-flex justify-content-center">
+                    <div class="card" style="width: 60vw;">
+                        <div class="card-header">
+                            <h5>
+                                "<%= rec.activity.activity%>"  (rating: <%=rec.rating%>) %>
+                            </h5>  
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h5>
+                                    "<%= rec.title%>" 
+                                </h5>                    
+                                    <%= rec.resource%>
+                                    <%= rec.content%>
+                            </li>
+                            <div class="card-footer" style="height: 3rem">
+                                <form method="POST" action ="/recommendations/users/<%= rec.userId%>/<%=rec.activityId%>?_method=DELETE">
+                                    <input type="submit" value="delete post">
+                                </form>
+                            </div>
+                            <%})}%>
+                    </div>
+                </div>

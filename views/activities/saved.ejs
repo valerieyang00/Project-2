@@ -57,7 +57,7 @@
                           </form>
                           <div>
                               <% if(save.participants > 1) {%>
-                                  <p><a href="/feed/new/<%=save.id%>">Post feed to invite others</a></p>
+                                  <p>Post in <a href="/feed/new/<%=save.id%>">MeetUp</a></p>
                               <%}%>
                           </div>
                       </div>
@@ -98,7 +98,7 @@
                               <li class="breadcrumb-item active"><a href="/saved/logs/<%=save.id%>">Log your progress</a></li>
                               <% if(save.participants > 1) {%>
                               <li class="breadcrumb-item active">                
-                                  <a href="/feed/new/<%=save.id%>">Post feed to invite others</a>
+                                  <p>Post in <a href="/feed/new/<%=save.id%>">MeetUp</a></p>
                             </li>
                                   <%}%>
                             </ol>
@@ -131,7 +131,7 @@
               
                       <nav aria-label="breadcrumb">
                           <ol class="breadcrumb">
-                            <li class="breadcrumb-item active"><a href="/recommendations/new/<%=save.id%>">Click to Post recommendation</a></li>
+                            <li class="breadcrumb-item active"><a href="/reviews/new/<%=save.id%>">Write a review</a></li>
                             <li class="breadcrumb-item active">                
                               <a href="/saved/logs/<%=save.id%>">View logs</a>
                           </li>

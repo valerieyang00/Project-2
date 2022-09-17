@@ -5,7 +5,7 @@
 <%}%>
 
 
-<a href="/reviews/users/<%=user.id%>">your recommendations</a>
+<a href="/reviews/users/<%=user.id%>">your reviews</a>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">View by Type of Activity:</a>
@@ -39,43 +39,54 @@
     </div>
 </nav>
 
-<% if(activitytype==="all" ) {%>
-    <% recs.forEach(rec=> {%>
-        <div class="d-flex justify-content-center">
-            <div class="card" style="width: 60vw;">
-                <div class="card-header">
-                    <h5>
-                        For activity:"<%= rec.activity.activity%>"  (rating: <%=rec.rating%>) %>
-                    </h5>  
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+<div id="saved_section">
+    <% if(activitytype==="all" ) {%>
+        <% recs.forEach(rec=> {%>
+            <div class="d-flex justify-content-center">
+                <div class="card" style="width: 60vw;">
+                    <div class="card-header">
                         <h5>
-                            "<%= rec.title%>" 
-                        </h5>                    
-                            <%= rec.resource%>
-                            <%= rec.content%>
-                    </li>
-                    <div class="card-footer" style="height: 2.5rem">
-                        <h6>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)</h6>
+                            "<%= rec.activity.activity%>" 
+                            <small class="text-muted text-right"><%= moment(rec.createdAt).calendar()%></small> %>
+                        </h5>  
                     </div>
-                    <%})}%>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>
+                                "<%= rec.title%>" (rating: <%=rec.rating%>) 
+                            </h5>                    
+                                <%= rec.resource%>
+                                <%= rec.content%>
+                        </li>
+                        <div class="card-footer" style="height: 2.5rem">
+                            <h6>Posted by: <%= rec.user.name%> </h6>
+                        </div>
+                        <%})}%>
+                </div>
             </div>
-        </div>
-
-            <% if(activitytype !== "all" ) {%>
-                <% recs.forEach(rec=> {%>
-                    <% if(activitytype===rec.activity.type) { %>
-                        <h5>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)
-                        </h5>
-                        <h5>
-                            For activity:"<%= rec.activity.activity%>"
-                        </h5>
-
-                        <h6>
-                            "<%= rec.title%>" (rating: <%=rec.rating%>)
-                        </h6>
-                        <p>
-                            <%= rec.content%>
-                        </p>
-                        <%}})}%>
+    
+        <% if(activitytype !== "all" ) {%>
+            <% recs.forEach(rec=> {%>
+                <% if(activitytype===rec.activity.type) { %>
+                    <div class="d-flex justify-content-center">
+                        <div class="card" style="width: 60vw;">
+                             <div class="card-header">
+                                <h5>
+                                "<%= rec.activity.activity%>"  (rating: <%=rec.rating%>) %>
+                                </h5>  
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                            <h5>
+                                                "<%= rec.title%>" 
+                                            </h5>                    
+                                                <%= rec.resource%>
+                                                <%= rec.content%>
+                                        </li>
+                                        <div class="card-footer" style="height: 2.5rem">
+                                            <h6>Posted by: <%= rec.user.name%> (<%= moment(rec.createdAt).calendar()%>)</h6>
+                                        </div>
+                                        <%}})}%>
+                                </div>
+                            </div>
+</div>
