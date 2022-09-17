@@ -1,7 +1,7 @@
 <h4>Post a recommendation for <%= activity.type %>:</h4>
 <h5>"<%= activity.activity %>"</h5>
 
-<form method="POST" action="/recommendations/<%=user.id%>/<%=activity.id%>">
+<form method="POST" action="/reviews/<%=user.id%>/<%=activity.id%>">
     <label>Review</label>
     <input type="text" name="title" required>
     <label>Rating (1-5)</label>

@@ -47,29 +47,36 @@
                     <div class="card-header">
                         <h5>
                             "<%= rec.activity.activity%>" 
-                            <small class="text-muted text-right"><%= moment(rec.createdAt).calendar()%></small> %>
-                        </h5>  
+                        </h5>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <h5>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>
                                 "<%= rec.title%>" (rating: <%=rec.rating%>) 
-                            </h5>                    
-                                <%= rec.resource%>
+                            </p> 
+                            <p class="card-text">
+                                <%= rec.resource%> <br>
                                 <%= rec.content%>
-                        </li>
-                        <div class="card-footer" style="height: 2.5rem">
-                            <h6>Posted by: <%= rec.user.name%> </h6>
+                            </p>      
+                            <div class="d-flex justify-content-end">
+                                  <cite title="date">
+                                      <small class="text-muted"> 
+                                      Posted by: <%= rec.user.name%><br>
+                                      <%=  moment(rec.createdAt).fromNow()%></small> 
+                                  </cite>                                
+                            </div>
                         </div>
                         <%})}%>
                 </div>
             </div>
+        </div>
+
     
         <% if(activitytype !== "all" ) {%>
             <% recs.forEach(rec=> {%>
                 <% if(activitytype===rec.activity.type) { %>
                     <div class="d-flex justify-content-center">
-                        <div class="card" style="width: 60vw;">
+                        <div class="card" style="width: 60vw;" >
                              <div class="card-header">
                                 <h5>
                                 "<%= rec.activity.activity%>"  (rating: <%=rec.rating%>) %>
