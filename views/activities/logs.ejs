@@ -1,29 +1,37 @@
-<h3>Log your progress for:</h3>
-<h4><%= activity.activity %></h4>
+
+<div id="saved_section" style="margin-left: 5vw">
+<h3>Log your progress for: "<%= activity.activity %>"</h3>
 
 <% logs.forEach(log => { %>
-    <h5>Title: <%=log.title%> (<%= moment(log.createdAt).calendar()%>):</h5>
+    <h5 style="margin-top: 2rem"><%=log.title%> </h5>
     <p><%=log.content%></p>
-    <a href="/saved/logs/<%=activity.id%>/<%=log.id%>">edit</a>
-    <form method="POST" action ="/saved/logs/<%=activity.id%>/<%=log.id%>/?_method=DELETE">
-      <input type="submit" value="delete">
-  </form>
-
+    <div class="nav">
+           <button style="margin-right: 0.2rem">
+            <a href="/saved/logs/<%=activity.id%>/<%=log.id%>">edit</a>
+          </button>
+        </li>
+          <form method="POST" action ="/saved/logs/<%=activity.id%>/<%=log.id%>/?_method=DELETE">
+            <button type="submit">delete</button>
+        </form>
+        <small class="text-muted" style="margin-left: 1rem"><%= moment(log.createdAt).fromNow()%></small>
+      </div>
 <%})%>
 
 
-
-
-<h4>Add New:</h4>
-<form action="/saved/logs/<%=activity.id%>" method="POST">
-    <div class="form-group">
-      <label for="title">Title</label>
+<h4 style="margin-top: 5rem">Add New:</h4>
+<form action="/saved/logs/<%=activity.id%>" method="POST" class="row g-3" style="width:50rem">
+    <div class="col-12">
+      <label for="title:">Title</label>
       <input type="text" class="form-control" id="title" name="title" required>
     </div>
-    <div class="form-group">
-      <label for="content">Content</label>
-      <textarea type="text" class="form-control" id="content" name="content" required></textarea>
+    <div class="col-12">
+      <label for="content">Content:</label>
+      <textarea type="text" class="form-control" name="content" required></textarea>
     </div>
   
     <input type="submit" class="btn btn-primary">
   </form>
+
+</div>
+
+  
