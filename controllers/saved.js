@@ -40,7 +40,8 @@ router.get('/logs/:id', async (req, res) => {
         const logs = await db.log.findAll({
             where: {
                 activityId: req.params.id,
-            }
+            },
+            order: [['createdAt', 'DESC']]
         })
         const activity = await db.activity.findOne({
             where: {
