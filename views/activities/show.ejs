@@ -14,16 +14,23 @@
                 <ul>                    
                     Accessibility(scale 0-1): <%= data.accessibility%>
                     <div class="btn-group dropend">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .8rem;">
                           ?
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item text" >A factor describing how possible an event is to do with zero being the most accessible [0.0,1.0]</a></li>
+                          <li><a class="dropdown-item text" >A factor describing how possible an event <br> is to do with zero being the most accessible <br> [0.0,1.0]</a></li>
                         </ul>
                       </div>
-                    <!-- <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="popover" data-bs-title="Accessibility" data-bs-content="A factor describing how possible an event is to do with zero being the most accessible [0.0,1.0]">?</button>  -->
                 </ul>
                 <ul>Price(scale 0-1): <%= data.price%>
+                    <div class="btn-group dropend">
+                        <button class="btn dropdown-toggle btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .8rem;">
+                          ?
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item text" >A factor describing the cost of the <br>event with zero being free 0, 1]</a></li>
+                        </ul>
+                      </div>
                 </ul>
                 </div>   
                 <div class = "d-flex justify-content-center">
