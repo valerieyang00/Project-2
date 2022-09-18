@@ -1,26 +1,94 @@
-<a href="/feed/all">To Feed</a>
-<h4>Invitations Posted by you</h4>
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid" style="margin-left: 2vw">
+        <div class="navbar-brand">
+        <div class="nav">
+        <small><a href="/feed">Back to All Posts</a></small>
+        </div>
+    </div>
+   
+        <li class="nav-link">
+            <div class=" d-flex justify-content-end">
+                <a class="btn" role="button" href="/feed/users/<%=user.id%>" style="margin-left:1em"><strong>My Posts</strong><span class="badge text-bg-warning" style="margin-left:0.2em">
+                    <%= userFeeds %>
+                </span></a>
+            </div>
+        </li>
+    </div>
+</nav>
+
 
 <% if(user) {%>
-    <% feeds.forEach(feed => {%>
-        <h5>Posted (<%= moment(feed.createdAt).calendar()%>)
-        </h5>
-        <h5>
-            For activity:"<%= feed.activity.activity%>"
-        </h5>
+    <div id="content" style="margin-top: 3vh;">
+        <% feeds.forEach(feed => {%>
+         <div class="card" style="width: 50vw;">
+             <div class="card-body">
+               <div class="d-flex justify-content-end" style="margin-top: -0.8em">
+                   <p class="text-muted">Posted <%= moment(feed.createdAt).fromNow()%> by <%= feed.user.name%></p>
+               </div>
+               <div class="d-flex justify-content-between" style="margin-top:-0.5em">
+                   <h4 class="card-title">"<%= feed.activity.activity%>"</h5>
+                   <h5 class="card-title">Status: <%= feed.status%></h4>
+               </div>
+                <div style="margin-top: 0.5em">
+                   <h6 class="card-subtitle mb-2" style="margin-left: 2em">Location: <%= feed.user.city%>, <%= feed.user.state%> <br>Looking for: <%= feed.activity.participants%> People</h6>
+                   <p class="card-text" style="margin-left:2em"><%= feed.content%></p>
+               </div>
+           </div>
+           <div class="card-body d-flex justify-content-between">
+               <span class="badge rounded-pill text-bg-warning">
+               <a class="btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><strong>View all
+                 <% let commentArr = [] %>
+                 <%feed.comments.forEach(comment =>{%>
+                     <%commentArr.push(comment.id)%>
+                 <%})%>
+                 <%=commentArr.length%> comments</strong></a></span>
+                 <div>
+                     <span class="badge rounded-pill text-bg-warning">
+                         <a class="btn btn-sm" type="button" href="/feed/edit/<%=feed.id%>">edit</a>
+                     </span>
+                     <span class="badge rounded-pill text-bg-warning">
+                         <form method="POST" action ="/feed/users/<%=feed.userId%>/<%= feed.id%>?_method=DELETE">
+                             <button class="btn btn-sm" type="submit">delete</button>
+                         </form>
+                     </span>
+                 </div>
+             </div>
+           </div>
+           <div class="collapse" id="collapseExample">
+               <div class="card card-body" style="width: 50vw;">                  
+                   <% comments.forEach(comment => {%>
+                       <% if(feed.id === comment.feedId) { %>
+                           <div class="d-flex justify-content-between">
+                               <p><%=comment.user.name%>: <%=comment.content%></p> 
+                                   <small class="text-muted"><%= moment(comment.createdAt).fromNow()%></small>
+                           </div>
+                       <%}%>          
+                   <%})%>
+               </div>
+             </div>
+             <div class="card card-body" style="width: 50vw;">
+               <form method="POST" action="/feed/comments/<%=feed.id%>" class="row g-3 align-items-center">
+                       <div class="col-md-10">
+                           <input hidden value="<%=user.id%>" name="userId">
+                           <label for="content"></label>
+                               <input style = "margin-top:-1.5em" class ="form-control" name="content" type="text" placeholder="leave a comment as <%=user.name%>">            
+                       </div>
+                       <div class="col-md-2">
+                           <button class="form-control btn btn-sm btn-info" type="submit">Post</button>
+                       </div>
+                   </div>
+               </form>
 
-        <h6>
-            Status: <%= feed.status%>
-        </h6>
-        <h6>
-            # of People: <%= feed.activity.participants%>
-        </h6>
-        <p>
-            <%= feed.content%>
-        </p>
+           </div>    
+         <%})%>
 
-        <a href="/feed/edit/<%=feed.id%>">edit</a>
-        <form method="POST" action ="/feed/users/<%=feed.userId%>/<%= feed.id%>?_method=DELETE">
-            <input type="submit" value="delete post">
-        </form>
-        <%})}%>
+ </div>
+  <%}%> 
+
+
+
+
+
+
+
