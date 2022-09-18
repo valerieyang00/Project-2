@@ -25,9 +25,9 @@
           <div class="card" style="width: 50vw;">
               <div class="card-body">
                 <div class="d-flex justify-content-end" style="margin-top: -0.8em">
-                    <small class="text-muted">Posted by: <%= feed.user.name%> (<%= moment(feed.createdAt).fromNow()%>)</small>
+                    <p class="text-muted">Posted <%= moment(feed.createdAt).fromNow()%> by <%= feed.user.name%></p>
                 </div>
-                <div class="d-flex justify-content-between" style="margin-top:0.5em">
+                <div class="d-flex justify-content-between" style="margin-top:-0.5em">
                     <h4 class="card-title">"<%= feed.activity.activity%>"</h5>
                     <h5 class="card-title">Status: <%= feed.status%></h4>
                 </div>
@@ -63,7 +63,7 @@
                         <div class="col-md-10">
                             <input hidden value="<%=user.id%>" name="userId">
                             <label for="content"></label>
-                                <input style = "margin-top:-1.5em" class ="form-control" name="content" type="text" placeholder="leave a comment as <%=user.name%>">             
+                                <input style = "margin-top:-1.5em" class ="form-control" name="content" type="text" placeholder="leave a comment as <%=user.name%>">            
                         </div>
                         <div class="col-md-2">
                             <button class="form-control btn btn-sm btn-info" type="submit">Post</button>
