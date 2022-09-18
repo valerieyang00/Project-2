@@ -18,7 +18,12 @@ router.get('/', async (req, res) => {
         const comments = await db.comment.findAll({
             include: [db.feed, db.user]
         })
-        res.render('feed/show.ejs', {feeds:feeds, user: res.locals.user, comments:comments})
+        const userFeeds = await db.feed.count({
+            where: {
+                userId: res.locals.user.id
+            }
+        })
+        res.render('feed/show.ejs', {feeds:feeds, user: res.locals.user, comments:comments, userFeeds: userFeeds})
       } catch (err) {
         console.log(err)
         res.send('server error')

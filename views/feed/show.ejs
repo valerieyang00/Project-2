@@ -1,15 +1,21 @@
-    <h2>Invite or Join others</h2>
-    
-    <a href="/feed/users/<%=user.id%>">your posts</a>
+     
+
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid d-flex justify-content-sm-start">
-            <a class="navbar-brand">Search By City:</a>
+            <h3>Invite or Join</h3>
+             <a class="navbar-brand" style="margin-left: 2rem">Search By City:</a>
                 <form method="GET" action="/feed/all?city=" class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="city">
                 <button class="btn btn-outline-success" type="submit">Search</button>
               </form>
-    
             </div>
+              <li class="nav-link">
+                <div class=" d-flex justify-content-end">
+                    <a class="btn" role="button" href="/feed/users/<%=user.id%>"><strong>My Posts</strong><span class="badge text-bg-warning" style="margin-left:0.2em">
+                        <%=userFeeds%>
+                    </span></a>
+                </div>
+            </li>
     </nav>
     
   <div id="content" style="margin-top: 3vh;">
