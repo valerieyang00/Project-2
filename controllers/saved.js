@@ -148,7 +148,7 @@ router.delete('/:id', async (req, res) => {
                 id: req.params.id
             },
         })
-        res.redirect('/saved')
+        res.redirect('/saved/all')
     } catch (err) {
         console.log(err)
         res.send('server error')

@@ -1,14 +1,7 @@
-<% if(activitytype==="all" ) {%>
-<h2>Reviews</h2>
-<% } else {%>
-    <h3>Reviews for <%= activitytype %></h3>
-<%}%>
 
-
-<a href="/reviews/users/<%=user.id%>">your reviews</a>
 <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">View by Type of Activity:</a>
+    <div class="container-fluid" style="margin-left: 2vw">
+        <a class="navbar-brand" href="#"><h3>Reviews by Category:</h3></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,8 +27,15 @@
                     </ul>
 
             </ul>
-
+            
         </div>
+        <li class="nav-link">
+            <div class=" d-flex justify-content-end">
+                <a class="btn" role="button" href="/reviews/users/<%=user.id%>" style="margin-left:1em"><strong>My Reviews</strong><span class="badge text-bg-warning" style="margin-left:0.2em">
+                    <%= userRecs %>
+                </span></a>
+            </div>
+        </li>
     </div>
 </nav>
 
@@ -43,7 +43,7 @@
     <% if(activitytype==="all" ) {%>
         <% recs.forEach(rec=> {%>
             <div class="d-flex justify-content-center">
-                <div class="card" style="width: 60vw;">
+                <div class="card" style="width: 50vw;">
                     <div class="card-header">
                         <h5>
                             "<%= rec.activity.activity%>" 

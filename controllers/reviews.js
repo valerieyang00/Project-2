@@ -15,7 +15,12 @@ router.get('/:type', async (req, res) => {
         }
         )
         const type = req.params.type
-        res.render('reviews/show.ejs', { recs: recs, activitytype:type})
+        const userRecs = await db.recommendation.count({
+            where: {
+                userId: res.locals.user.id
+            }
+        })
+        res.render('reviews/show.ejs', { recs: recs, activitytype:type, userRecs: userRecs})
       } catch (err) {
         console.log(err)
         res.send('server error')
@@ -63,7 +68,12 @@ router.get('/users/:userid', async (req, res) => {
             order: [['createdAt', 'DESC']],
             include: [db.activity]
         })
-        res.render('reviews/user.ejs', { recs: recs, activity: recs.activity })
+        const userRecs = await db.recommendation.count({
+            where: {
+                userId: res.locals.user.id
+            }
+        })
+        res.render('reviews/user.ejs', { recs: recs, activity: recs.activity, userRecs:userRecs })
     } catch (err) {
         console.log(err)
         res.send('server error')
