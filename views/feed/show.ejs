@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <a class="btn" role="button" href="#">View Comments</strong><span class="badge text-bg-warning" style="margin-left:0.1rem">
+                <a class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Comments</strong><span class="badge text-bg-warning" style="margin-left:0.1rem">
                   <% let commentArr = [] %>
                   <%feed.comments.forEach(comment =>{%>
                       <%commentArr.push(comment.id)%>
@@ -44,18 +44,31 @@
               <small class="text-muted">Posted by: <%= feed.user.name%> (<%= moment(feed.createdAt).fromNow()%>)</small>
             </div>
             </div>
-          <% comments.forEach(comment => {%>
-              <% if(feed.id === comment.feedId) { %>
-                  <%=comment.user.name%>: <%=comment.content%>
-              <%}%>
-          
-          <%})%>
-          <form method="POST" action="/feed/comments/<%=feed.id%>" class="form-inline">
-              <input hidden value="<%=user.id%>" name="userId">
-              <label for="content"><%=user.name%>:</label>
-              <input name="content" type="text" placeholder="leave a comment">
-              <button type="submit">submit</button>
-          </form>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body" style="width: 50vw;">                  
+                    <% comments.forEach(comment => {%>
+                        <% if(feed.id === comment.feedId) { %>
+                            <div class="d-flex justify-content-between">
+                                <p><%=comment.user.name%>: <%=comment.content%></p> 
+                                    <small class="text-muted"><%= moment(comment.createdAt).fromNow()%></small>
+                            </div>
+                        <%}%>          
+                    <%})%>
+                </div>
+              </div>
+              <div class="card card-body" style="width: 50vw;">
+                <form method="POST" action="/feed/comments/<%=feed.id%>" class="row g-3 align-items-center">
+                        <div class="col-md-10">
+                            <input hidden value="<%=user.id%>" name="userId">
+                            <label for="content"></label>
+                            <input style = "margin-top:-1.5em" class ="form-control" name="content" type="text" placeholder="leave a comment as <%=user.name%>">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="form-control btn btn-sm btn-info" type="submit">Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>    
           <%})%>
 
   </div>

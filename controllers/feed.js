@@ -162,7 +162,7 @@ router.post('/comments/:feedid', async (req, res) => {
         userId: req.body.userId
 
     })
-    res.redirect("/feed/all")
+    res.redirect("/feed")
 } catch (err) {
     console.log(err)
     res.send('server error')
