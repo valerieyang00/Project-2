@@ -42,12 +42,16 @@ router.get('/all', async (req, res) => {
             order: [
                 ['createdAt', 'DESC'],
                 ['status', 'DESC']],
-            include: [db.activity, db.user]
+            include: [db.activity, db.user, db.comment]
         })
         const comments = await db.comment.findAll({
             include: [db.feed, db.user]
         })
-        res.render('feed/search.ejs', {feeds:feeds, search:search, comments:comments})
+        const userFeeds = await db.feed.count({
+            where: {
+                userId: res.locals.user.id
+            }})
+        res.render('feed/search.ejs', {feeds:feeds, search:search, comments:comments, userFeeds:userFeeds})
       } catch (err) {
         console.log(err)
         res.send('server error')
