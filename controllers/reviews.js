@@ -79,12 +79,42 @@ router.get('/users/:userid', async (req, res) => {
         res.send('server error')
     }
 })
-router.delete('/users/:userid/:activityid', async (req, res) => {
+router.delete('/users/:userid/:id', async (req, res) => {
     try {
         const recDelete = await db.recommendation.destroy({
             where: {
                 userId: req.params.userid,
-                activityId: req.params.activityid
+                id: req.params.id
+            }
+        })
+        res.redirect(`/reviews/users/${req.params.userid}`)
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+router.get('/edit/:id', async (req, res) => {
+    try {
+        const rec = await db.recommendation.findOne({
+            where: {                
+                id: req.params.id
+            }
+        })
+        res.render("reviews/edit.ejs", {rec:rec})
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+router.put('/:userid/:id', async (req, res) => {
+    try {
+        const recUpdate = await db.recommendation.update({
+            title: req.body.title,
+            resource: req.body.resource,
+            content: req.body.content,
+            rating: req.body.rating
+        }, {where: {                
+                id: req.params.id,
             }
         })
         res.redirect(`/reviews/users/${req.params.userid}`)

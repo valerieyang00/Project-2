@@ -13,7 +13,7 @@
     <div class="container-fluid" style="margin-left: 2vw">
         <div class="navbar-brand">
         <div class="nav">
-        <small><a href="/reviews/all">Back to All Reviews</a></small>
+        <h5><a href="/reviews/all">Back to All Reviews</a></h5>
         </div>
     </div>
    
@@ -63,11 +63,16 @@
                                       </cite>                                
                                 </div>
                             </div>
-                            
-                            <div class="card-footer" style="height: 3rem">
-                            <form method="POST" action ="/reviews/users/<%= rec.userId%>/<%=rec.activityId%>?_method=DELETE">
-                          <button class="btn btn-danger btn-sm" type="submit">delete review</button>
+
+                            <div class="card-footer d-flex justify-content-end" style="height: 3rem">
+                            <span class="badge rounded-pill text-bg-info">
+                            <a class="btn btn-sm" type="button" href="/reviews/edit/<%=rec.id%>">edit</a>
+                            </span>
+                            <span class="badge rounded-pill text-bg-danger">                  
+                            <form method="POST" action ="/reviews/users/<%= rec.userId%>/<%=rec.id%>?_method=DELETE">
+                            <button class="btn btn-sm" type="submit">delete</button>
                             </form>
+                            </span>
                             </div>
                             <%})}%>
                     </div>

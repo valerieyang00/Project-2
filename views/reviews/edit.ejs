@@ -1,0 +1,32 @@
+<div id="saved_section">
+    <div style="margin-left: 5vw">
+        <form method="POST" action="/reviews/<%=rec.userId%>/<%=rec.id%>?_method=PUT" class="row g-3" style="width:50rem" class="row g-3" style="width:50rem">
+            <div class="col-12">
+                    <label>Review:</label>
+                    <input hidden value="<%=rec.userId%>" name="userId">
+                    <input class="form-control" type="text" name="title" value="<%=rec.title%>" required>
+                </div>
+                    <div class="col-md-6">
+                    <label>Rating (1-5)</label>
+                    <select class="form-control" name="rating" required>
+                        <option value="5" selected>5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option></select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="resource">Resource (optional):</label>
+                        <input class="form-control" name="resource" type="text" value="<%=rec.resource%>">
+                    </div>
+                  <div class="col-12">
+                    <label>Details (optional)</label>
+                    <textarea class="form-control" name="content"><%=rec.content%></textarea>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="btn btn-info" type="submit">Submit Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

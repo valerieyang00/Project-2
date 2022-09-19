@@ -12,7 +12,7 @@
     <div class="container-fluid" style="margin-left: 2vw">
         <div class="navbar-brand">
         <div class="nav">
-        <small><a href="/feed">Back to All Posts</a></small>
+        <h5><a href="/feed">Back to All Posts</a></h5>
         </div>
     </div>
    
@@ -44,7 +44,7 @@
                        <h5 class="card-title">Status: <%= feed.status%></h4>
                    </div>
                     <div style="margin-top: 0.5em">
-                       <h6 class="card-subtitle mb-2" style="margin-left: 2em">Location: <%= feed.user.city%>, <%= feed.user.state%> <br>Looking for: <%= feed.activity.participants%> People</h6>
+                       <h6 class="card-subtitle mb-2" style="margin-left: 2em">Location: <%= feed.user.city%>, <%= feed.user.state%> <br>Participants: <%= feed.activity.participants%> people</h6>
                        <p class="card-text" style="margin-left:2em"><%= feed.content%></p>
                    </div>
                </div>
