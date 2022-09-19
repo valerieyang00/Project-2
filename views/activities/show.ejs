@@ -60,21 +60,29 @@
                         <form action="/<%=type%>" method="GET">
                             <button class="btn btn-secondary">Next</button>
                         </form>
-                </div>
+                    </div>
+                    
                 </div>            
+                <% if(message) { %>
+                    <div class="d-flex justify-content-center">
+                        <div class="alert alert-success" role="alert">
+                            Successfully Saved! See list <a href="/saved/all">here</a> or
+                            click 'next' to keep going
+                        </div>
+                    </div>
+                        <%}%>
+                            <%} else {%>
+                                <div class="d-flex align-items-center justify-content-center" style="height:90vh">
+                                    <h5>
+                                        Please <a href="/users/login"> login</a> to your account to continue
+                                        <br>Don't have an account yet? <a href="/users/new"> Sign up</a>! 
+                                    </h5>
+                                </div>
+                
+                                <%}%>
             </div>
         </div>
     
-        <% if(message) { %>
-            <div class="alert alert-success" role="alert">
-                Successfully Saved! See <a href="/saved/all">here</a>.
-                Click 'next' to keep going
-            </div>
-            <%}%>
-                <%} else {%>
-                    <h4>Please log in to your account!</h4>
-    
-                    <%}%>
 
 <footer>
     <small class="text-muted">

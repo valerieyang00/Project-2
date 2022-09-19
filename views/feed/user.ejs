@@ -2,7 +2,7 @@
     <style>
         body {
             background-image: url("../image.jpg");
-            background-color: antiquewhite;
+            background-color:#FFFFFF;
             height: 100vh;
         }
     </style>
@@ -53,10 +53,10 @@
                  <%})%>
                  <%=commentArr.length%> comments</strong></a></span>
                  <div>
-                     <span class="badge rounded-pill text-bg-warning">
+                     <span class="badge rounded-pill text-bg-secondary">
                          <a class="btn btn-sm" type="button" href="/feed/edit/<%=feed.id%>">edit</a>
                      </span>
-                     <span class="badge rounded-pill text-bg-warning">
+                     <span class="badge rounded-pill text-bg-danger">
                          <form method="POST" action ="/feed/users/<%=feed.userId%>/<%= feed.id%>?_method=DELETE">
                              <button class="btn btn-sm" type="submit">delete</button>
                          </form>
