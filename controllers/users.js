@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
         // if the user was found.... send them to login and let them know they already have an account
         if (!created) {
             console.log('user already exists')
-            res.redirect('/users/login?message=Please log into your account to continue.')
+            res.redirect('/users/login?message=This email already exists. Please log into your account to continue.')
         } else {
             //store new user's id as a cookie in the browser
             const encryptedUserId = crypto.AES.encrypt(newUser.id.toString(), process.env.ENC_SECRET)
@@ -107,9 +107,11 @@ router.get('/logout', (req, res) => {
 
 router.get('/profile', async (req, res) => {
     try {
+        const msgFail = 'Current password is invalid.'
+        const msgSuccess = 'Password reset successful'
     // if the user is not logged in, redirect to login form
     if (!res.locals.user) {
-        res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource')
+        res.redirect('/users/login?message=Please login to view your profile')
     } else {
         // otherwise, show them their profile
         const userData = await db.user.findOne({
@@ -118,7 +120,7 @@ router.get('/profile', async (req, res) => {
             }
         })
         res.render('users/profile.ejs', {
-            user: res.locals.user, image: userData.photo
+            user: res.locals.user, image: userData.photo, message: req.query.message ? req.query.message : null, msgFail:msgFail, msgSuccess:msgSuccess
         })
     }
 } catch(err){
@@ -150,6 +152,33 @@ router.put('/profile/:id', async (req, res) => {
             id: req.params.id
         }})
         res.redirect('/users/profile')
+    }catch(err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
+router.put('/profile/pw/:id/', async (req, res) => {
+    try {
+        const user = await db.user.findOne({
+            where: {
+                id: res.locals.user.id
+            }
+        })
+        const msgFail = 'Current password is invalid.'
+        const msgSuccess = 'Password reset successful'
+        if (!bcrypt.compareSync(req.body.oldpw, user.password)) {
+            res.redirect(`/users/profile?message=${msgFail}`)
+        } else {
+            const newHashedPW = bcrypt.hashSync(req.body.newpw, 12)
+            const updatePW = await db.user.update({
+                password: newHashedPW
+            }, {where: {
+                id: user.id
+            }})
+            res.redirect(`/users/profile?message=${msgSuccess}`)
+        }
+       
     }catch(err) {
         console.log(err)
         res.send('server error')

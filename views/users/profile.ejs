@@ -15,7 +15,42 @@
                  </ul>
                  <div class="d-flex justify-content-center">
                      <a href="/users/profile/<%=user.id%>" class="card-link">edit profile</a>
-                     <a href="#" class="card-link">change password</a>
+                     <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        change password
+                     </a>
+                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/users/profile/pw/<%=user.id%>/?_method=PUT" class="d-flex justify-content-center">
+                                    <div class="form-group" style="width:15rem">
+                                        <label for="oldpw">Current password:</label>
+                                        <input class="form-control" id="password" type="password" placeholder="old password" name="oldpw">
+                                        
+                                        <label for="newpw">New password:</label>
+                                        <input class="form-control" id="password" type="password" placeholder="new password" name="newpw">                             
+                   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <% if(message === msgFail) { %>
+                        <div class="text-center alert alert-danger" role="alert"><%= message %></div>                    
+                    <%} else if(message === msgSuccess) {%>
+                        <div class="text-center alert alert-success" role="alert"><%= message %></div> 
+                        <%}%>
                  </div>
                </div>
              </div>
