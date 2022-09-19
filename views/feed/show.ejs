@@ -59,7 +59,7 @@
                    <% comments.forEach(comment => {%>
                        <% if(feed.id === comment.feedId) { %>
                            <div class="d-flex justify-content-between">
-                               <p><%=comment.user.name%>: <%=comment.content%></p> 
+                               <p><span style="font-weight: bolder;"><%=comment.user.name%></span>: <%=comment.content%></p> 
                                    <small class="text-muted"><%= moment(comment.createdAt).fromNow()%></small>
                            </div>
                        <%}%>          
