@@ -27,6 +27,7 @@ app.use(cookieParser())
 const methodOverride = require("method-override")
 app.use(methodOverride("_method"))
 app.use(express.static("public"))
+app.use(express.static("files"))
 //our custom auth middleware
 //next tells express to move on to next route or middleware in the chain 
 app.use(async (req, res, next) => {
