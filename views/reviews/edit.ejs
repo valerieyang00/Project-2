@@ -1,5 +1,5 @@
 <div id="saved_section">
-    <div style="margin-left: 5vw">
+    <div style="margin-left: 20vw">
         <form method="POST" action="/reviews/<%=rec.userId%>/<%=rec.id%>?_method=PUT" class="row g-3" style="width:50rem" class="row g-3" style="width:50rem">
             <div class="col-12">
                     <label>Review:</label>
@@ -24,6 +24,7 @@
                     <textarea class="form-control" name="content"><%=rec.content%></textarea>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
+                    <a href="/reviews/users/<%=rec.userId%>" type="button" class="btn btn-secondary">Cancel</a>
                     <button class="btn btn-info" type="submit">Submit Changes</button>
                 </div>
             </div>

@@ -28,7 +28,7 @@
         </div>
     </nav>
     
-    <div id="content" style="margin-top: 3vh;">
+    <div id="saved_section" class="d-flex justify-content-center">
         <% feeds.forEach(feed => {%>
          <div class="card" style="width: 50vw;">
              <div class="card-body">
@@ -53,7 +53,6 @@
                  <%})%>
                  <%=commentArr.length%> comments</strong></a></span>
              </div>
-           </div>
            <div class="collapse" id="collapseExample">
                <div class="card card-body" style="width: 50vw;">                  
                    <% comments.forEach(comment => {%>
@@ -78,7 +77,8 @@
                        </div>
                    </div>
                </form>
-           </div>    
+           </div>
+        </div>    
          <%})%>
 
  </div>

@@ -1,6 +1,6 @@
 <div id="saved_section">
 
-    <div style="margin-left: 5vw">
+    <div style="margin-left: 20vw">
         <form method="POST" action="/feed/<%=feed.id%>?_method=PUT" class="row g-3" style="width:50rem">
             <div class="col-12">
                     <label>Activity:</label>
@@ -31,6 +31,7 @@
                     <textarea class="form-control" name="content"><%=feed.content%></textarea>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
+                    <a href="/feed/users/<%=feed.userId%>" type="button" class="btn btn-secondary">Cancel</a>
                     <button class="btn btn-info" type="submit">Submit Changes</button>
                 </div>
             </div>

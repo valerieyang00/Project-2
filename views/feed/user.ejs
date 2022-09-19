@@ -31,7 +31,7 @@
 <% if(userFeeds !== 0) { %>
 
     <% if(user) {%>
-        <div id="content" style="margin-top: 3vh;">
+        <div id="saved_id" class="d-flex justify-content-center">
             <% feeds.forEach(feed => {%>
              <div class="card" style="width: 50vw;">
                  <div class="card-body">
@@ -46,7 +46,7 @@
                        <h6 class="card-subtitle mb-2" style="margin-left: 2em">Location: <%= feed.user.city%>, <%= feed.user.state%> <br>Participants: <%= feed.activity.participants%> people</h6>
                        <p class="card-text" style="margin-left:2em"><%= feed.content%></p>
                    </div>
-               </div>
+               <!-- </div> -->
                <div class="card-body d-flex justify-content-between">
                    <span class="badge rounded-pill text-bg-warning">
                    <a class="btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><strong>View all
@@ -92,7 +92,8 @@
                        </div>
                    </form>
     
-               </div>    
+               </div> 
+            </div>   
              <%})%>
     
      </div>
