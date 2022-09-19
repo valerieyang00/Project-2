@@ -84,12 +84,12 @@
                 </div>
             </div>
     
-
+            <%let arr =[]%>
             <% if(activitytype !== "all" ) {%>
                 <% recs.forEach(rec=> {%>
                     <% if(activitytype===rec.activity.type) { %>
-                        <% if(rec) {%>
-                            <div class="d-flex justify-content-center">
+                        <%arr.push(activitytype)%>
+                               <div class="d-flex justify-content-center">
                                 <div class="card" style="width: 60vw;">
                                     <div class="card-header">
                                         <h5>
@@ -115,11 +115,16 @@
                                                   </cite>                                
                                             </div>
                                         </div>
-                                        <% } else {%>
-                                            <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">
-                                                <h5>No Reviews for "<%=activitytype%>"</h5>
-                                            </div>    
-                                        </div>
+                                                               </div>
                                     </div>
-                                    </div>
-                                        <%}}})}%>
+                                    </div>   
+ 
+                                    <%}})}%>
+
+
+
+<% if(activitytype !== "all" ) {%>
+    <%if(arr.length === 0) {%>
+        <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">
+            <h3 style="margin-left: 3vw" id="space">No reviews for "<%=activitytype%>" yet</h3>
+    <%}}%>
