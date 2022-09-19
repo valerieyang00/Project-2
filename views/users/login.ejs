@@ -1,22 +1,24 @@
-<% if(message) { %>
-    <p><%= message %></p>
-
-<%}%>
-
-
-
-
-<form action="/users/login" method="POST" class="d-flex justify-content-center">
-    <div class="form-group" style="width:25rem">
-      <label for="email">Email address</label>
-      <input id="email" type="email" name="email" class="form-control" placeholder="enter email">
-      <label for="password">Password</label>
-      <input id="password" type="password" name="password" class="form-control" placeholder="enter password">
-      <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
+<div id="saved_section">
+  <% if(message) { %>
+      <p class="text-center"><%= message %></p>
+  
+  <%}%>
+  
+  
+  
+  
+  <form action="/users/login" method="POST" class="d-flex justify-content-center">
+      <div class="form-group" style="width:25rem">
+        <label for="email">Email address</label>
+        <input id="email" type="email" name="email" class="form-control" placeholder="enter email">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" class="form-control" placeholder="enter password">
+        <div class="d-flex justify-content-center">
+          <button style="margin-top: 2em" type="submit" class="btn btn-primary">Submit</button>
+        </div>
       </div>
-    </div>
-
-  </form>
+  
+    </form>
+</div>
 
   

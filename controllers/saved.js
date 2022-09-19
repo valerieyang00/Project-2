@@ -9,6 +9,10 @@ router.use(methodOverride("_method"))
 router.get('/:status', async (req, res) => {
     try {
         const saved = await db.activity.findAll()
+        const countSaved = await db.activity.count({
+            where: {
+                userId: res.locals.user.id
+        }})
         const param = req.params.status
         let status = null
         function change() {
@@ -28,7 +32,7 @@ router.get('/:status', async (req, res) => {
             }
         }
         change()
-        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user, status: status, param: param })
+        res.render('activities/saved.ejs', { saved: saved, user: res.locals.user, status: status, param: param, countSaved:countSaved })
     } catch (err) {
         console.log(err)
         res.send('server error')
