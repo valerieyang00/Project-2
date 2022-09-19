@@ -170,6 +170,36 @@ router.put('/profile/:id', async (req, res) => {
     }
 })
 
+router.put('/profile/photo/:id/', async (req, res) => {
+    try {
+        const user = await db.user.findOne({
+            where: {
+                id: res.locals.user.id
+            }
+        })
+        if (req.files) {
+            const photo = req.files.photo
+            const filePath = path.join(__dirname, '..', "files", photo.name)
+            photo.mv(filePath, (err) => {
+                console.log(err)
+            })
+            const updatePhoto = await db.user.update({
+                photo: req.files.photo.name
+            }, {where: {
+                id: user.id
+            }})
+            res.redirect('/users/profile')
+        } else {
+            res.redirect('/users/profile?message=new photo was not uploaded. try again')
+        }
+
+       
+    }catch(err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+
 router.put('/profile/pw/:id/', async (req, res) => {
     try {
         const user = await db.user.findOne({

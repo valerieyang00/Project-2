@@ -1,59 +1,90 @@
-       <div class="container d-flex justify-content-center align-items-center" style="height: 60vh">
-           <div class="card" style="width: 25rem;">
-               <%if (image) {%>
-                   <img src="../<%=user.photo%>" class="card-img-top" alt="Photo" max-width="300" max-height="300"/>
-               <%}%>
-               <div class="card-body">
-                 <h5 class="card-title">Welcome!</h5>
-                 <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>
-                 <ul class="card-text">
-                   <li>Username: <%= user.name %></li>
-                   <li>Email: <%= user.email %></li>
-                   <li>Password: *******</li>
-                   <li>City: <%= user.city %></li>
-                   <li>State: <%= user.state %></li>
-                 </ul>
-                 <div class="d-flex justify-content-center">
-                     <a href="/users/profile/<%=user.id%>" class="card-link">edit profile</a>
-                     <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        change password
-                     </a>
-                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="container d-flex justify-content-center align-items-center" style="height: 60vh">
+    <div class="card" style="width: 25rem;">
+        <%if (image) {%>
+            <img src="../<%=user.photo%>" class="card-img-top" alt="Photo" max-width="300" max-height="300"/>
+        <%}%>
+        <div class="card-body">
+            <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                change profile photo
+             </a>
+             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Upload new photo</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" action="/users/profile/photo/<%=user.id%>/?_method=PUT" class="d-flex justify-content-center">
+                            <div class="form-group" style="width:25rem">
+                                <label for="photo">New photo:</label>
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control" id="inputGroupFile02" name="photo">
+                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                </div>              
+           
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <form method="POST" action="/users/profile/pw/<%=user.id%>/?_method=PUT" class="d-flex justify-content-center">
-                                    <div class="form-group" style="width:15rem">
-                                        <label for="oldpw">Current password:</label>
-                                        <input class="form-control" id="password" type="password" placeholder="old password" name="oldpw">
-                                        
-                                        <label for="newpw">New password:</label>
-                                        <input class="form-control" id="password" type="password" placeholder="new password" name="newpw">                             
-                   
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
-                            
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      <% if(message === msgFail) { %>
-                        <div class="text-center alert alert-danger" role="alert"><%= message %></div>                    
-                    <%} else if(message === msgSuccess) {%>
-                        <div class="text-center alert alert-success" role="alert"><%= message %></div> 
-                        <%}%>
+                        </form>                    
+                    </div>
+                </div>
+            </div>
+
+          <h5 class="card-title" style="margin-top:1.5em">Welcome!</h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>
+          <ul class="card-text">
+            <li>Username: <%= user.name %></li>
+            <li>Email: <%= user.email %></li>
+            <li>Password: *******</li>
+            <li>City: <%= user.city %></li>
+            <li>State: <%= user.state %></li>
+          </ul>
+          <div class="d-flex justify-content-center">
+              <a href="/users/profile/<%=user.id%>" class="card-link">edit profile</a>
+              <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                 change password
+              </a>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog modal-dialog-centered">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         <form method="POST" action="/users/profile/pw/<%=user.id%>/?_method=PUT" class="d-flex justify-content-center">
+                             <div class="form-group" style="width:15rem">
+                                 <label for="oldpw">Current password:</label>
+                                 <input class="form-control" id="password" type="password" placeholder="old password" name="oldpw">
+                                 
+                                 <label for="newpw">New password:</label>
+                                 <input class="form-control" id="password" type="password" placeholder="new password" name="newpw">                             
+            
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                               <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                               <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                             </div>
+                         </form>
+                     
+                     </div>
+                   </div>
                  </div>
                </div>
-             </div>
-       </div>
+               <% if(message === msgFail) { %>
+                 <div class="text-center alert alert-danger" role="alert"><%= message %></div>                    
+             <%} else if(message === msgSuccess) {%>
+                 <div class="text-center alert alert-success" role="alert"><%= message %></div> 
+                 <%}%>
+          </div>
+        </div>
+      </div>
+</div>
+
 
 
