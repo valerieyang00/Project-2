@@ -7,6 +7,11 @@ const db = require('./models')
 const crypto = require('crypto-js')
 const axios = require('axios')
 const moment = require('moment')
+const cors = require('cors')
+const fileUpload = require('express-fileupload')
+const morgan = require('morgan');
+const _ = require('lodash');
+const path = require('path')
 
 
 // console.log('server secret:', process.env.ENC_SECRET)
@@ -17,7 +22,7 @@ const app = express()
 const PORT = process.env.PORT || 3000
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 const methodOverride = require("method-override")
 app.use(methodOverride("_method"))
@@ -39,6 +44,9 @@ app.use(async (req, res, next) => {
     }
     next()
 })
+app.use(fileUpload())
+app.use(cors())
+app.use(morgan('dev'))
 
 // middleware that allows us to access the 'moment' library in every EJS view
 app.use((req, res, next) => {

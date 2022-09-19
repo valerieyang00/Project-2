@@ -1,5 +1,5 @@
 <div id="saved_section">
-    <form action="/users" method="POST" class="d-flex justify-content-center">
+    <form action="/users" method="POST" enctype="multipart/form-data" class="d-flex justify-content-center">
         <div class="form-group" style="width:25rem">
             <label for="formGroupExampleInput">Email:</label>
             <input type="email" name="email" class="form-control" id="formGroupExampleInput" placeholder="enter email" required>
@@ -16,12 +16,16 @@
             <label for="state">State:</label>
             <input class="form-control" id="state" type="state" name="state" placeholder="enter state" required>
         
-            <label for="photo">Photo URL:</label>
-            <input class="form-control" id="photo" type="photo" name="photo" placeholder="enter url (optional)" >
+            <label for="photo">Photo:</label>
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02" name="photo">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            </div>            
+              </div>             
     
+            </div>     
             <div class="d-flex justify-content-center">
                 <button style="margin-top: 2em" class="btn btn-primary" type="submit">Sign Up</button>
             </div>
-        </div>     
     </form>
 </div>

@@ -5,6 +5,8 @@ const crypto = require('crypto-js')
 const bcrypt = require('bcrypt')
 const methodOverride = require("method-override")
 router.use(methodOverride("_method"))
+const cors = require('cors')
+const fileUpload = require('express-fileupload')
 
 //GET render a form to create new user
 router.get('/new', (req, res) => {
@@ -16,35 +18,75 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
     //create a new user
     try {
+        console.log(req.body)
+        console.log(req.files.photo)
         //have to hash the password before creating new user
-        const hashedPW = bcrypt.hashSync(req.body.password, 12)
+        // const hashedPW = bcrypt.hashSync(req.body.password, 12)
 
-        const [newUser, created] = await db.user.findOrCreate({
-            where: {
-                email: req.body.email
-            },
-            defaults: {
-                password: hashedPW,
-                name: req.body.name,
-                city: req.body.city,
-                state: req.body.state,
-                photo: req.body.photo
-            }
+        // const [newUser, created] = await db.user.findOrCreate({
+        //     where: {
+        //         email: req.body.email
+        //     },
+        //     defaults: {
+        //         password: hashedPW,
+        //         name: req.body.name,
+        //         city: req.body.city,
+        //         state: req.body.state,
+        //         photo: req.body.photo
+        //     }
   
-        })
-        // if the user was found.... send them to login and let them know they already have an account
-        if (!created) {
-            console.log('user already exists')
-            res.redirect('/users/login?message=This email already exists. Please log into your account to continue.')
-        } else {
-            //store new user's id as a cookie in the browser
-            const encryptedUserId = crypto.AES.encrypt(newUser.id.toString(), process.env.ENC_SECRET)
-            const encryptedUserIdString = encryptedUserId.toString() // have to stringify
-            // res.cookie('key', value)
-            res.cookie('userId', encryptedUserIdString)
-            //redirect to the homepage
-            res.redirect('users/profile')
-        }
+        // })
+        // // if the user was found.... send them to login and let them know they already have an account
+        // if (!created) {
+        //     console.log('user already exists')
+        //     res.redirect('/users/login?message=This email already exists. Please log into your account to continue.')
+        // } else {
+        //     //store new user's id as a cookie in the browser
+        //     const encryptedUserId = crypto.AES.encrypt(newUser.id.toString(), process.env.ENC_SECRET)
+        //     const encryptedUserIdString = encryptedUserId.toString() // have to stringify
+        //     // res.cookie('key', value)
+        //     res.cookie('userId', encryptedUserIdString)
+        //     //redirect to the homepage
+        //     res.redirect('users/profile')
+        // }
+    } catch (err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
+router.post('/upload', async (req, res) => {
+    //create a new user
+    try {
+         console.log(req.files.photo)
+        //have to hash the password before creating new user
+        // const hashedPW = bcrypt.hashSync(req.body.password, 12)
+
+        // const [newUser, created] = await db.user.findOrCreate({
+        //     where: {
+        //         email: req.body.email
+        //     },
+        //     defaults: {
+        //         password: hashedPW,
+        //         name: req.body.name,
+        //         city: req.body.city,
+        //         state: req.body.state,
+        //         photo: req.body.photo
+        //     }
+  
+        // })
+        // // if the user was found.... send them to login and let them know they already have an account
+        // if (!created) {
+        //     console.log('user already exists')
+        //     res.redirect('/users/login?message=This email already exists. Please log into your account to continue.')
+        // } else {
+        //     //store new user's id as a cookie in the browser
+        //     const encryptedUserId = crypto.AES.encrypt(newUser.id.toString(), process.env.ENC_SECRET)
+        //     const encryptedUserIdString = encryptedUserId.toString() // have to stringify
+        //     // res.cookie('key', value)
+        //     res.cookie('userId', encryptedUserIdString)
+        //     //redirect to the homepage
+        //     res.redirect('users/profile')
+        // }
     } catch (err) {
         console.log(err)
         res.send('server error')
