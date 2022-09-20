@@ -41,11 +41,11 @@
                           <p class="text-muted">Posted <%= moment(feed.createdAt).fromNow()%> by <%= feed.user.name%></p>
                       </div>
                       <div class="d-flex justify-content-between" style="margin-top:-0.5em">
-                          <h4 class="card-title">"<%= feed.activity.activity%>"</h5>
+                          <h4 class="card-title">"<%= feed.activity.activity%>"</h4>
                             <%if(feed.status === "Open") { %>
-                                <h5 class="card-title" style="color: #2F4BE9">Status: <%= feed.status%></h4>
+                                <h5 class="card-title" style="color: #2F4BE9">Status: <%= feed.status%></h5>
                             <%} else {%>
-                                <h5 class="card-title">Status: <%= feed.status%></h4>
+                                <h5 class="card-title">Status: <%= feed.status%></h5>
                             <%}%>
                       </div>
                        <div style="margin-top: 0.5em">
