@@ -169,6 +169,19 @@ router.put('/profile/:id', async (req, res) => {
         res.send('server error')
     }
 })
+router.delete('/profile/:id', async (req, res) => {
+    try {
+        const deleteUser = await db.user.destroy({
+        where: {
+            id: req.params.id
+        }})
+        res.clearCookie('userId')
+        res.redirect('/')
+    }catch(err) {
+        console.log(err)
+        res.send('server error')
+    }
+})
 
 router.put('/profile/photo/:id/', async (req, res) => {
     try {

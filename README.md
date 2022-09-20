@@ -5,12 +5,17 @@ This app is for people like me who wants to have productive and eventful weekend
 I integrated the Bored API (http://www.boredapi.com/api/activity/) to bring in random activities by category: ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"] and enable users to go through activities for inspiration and add items to their own todo list. Users are able to log their progress on each activity and once completed, they can write a review on the activity to share with others. For activities that require 2 or more participants, users have the ability to write a post to invite others (MeetUp feed)and comment on posts.
 * URL: https://thisweekend-valerieyang00.koyeb.app/
 
-## Installation 
 
 ## Tech Used
 * Node.js - Express, Sequelize, EJS
 * PostgreSQL
 
+## Installation 
+* Fork and Clone repo to your local repository
+* Run `npm init -y` to initiate npm
+* Open the repo and navigate to `package.json` file and see a list of npm packages listed under `dependencies` 
+* Run `npm install` or `npm i` in the terminal to initiate download of all required npm packages. `node_modules` should appear in the folder.
+* Make sure `node_module` is in the `gitignore` file before committing to remote repository
 
 ## ERDs
 ![ERDs](./wireframes/ERDs.png)
@@ -55,7 +60,7 @@ DELETE | /feed/:userId/:feedId| DESTROY | delete user's post | user posts delete
 POST| /feed/comments/:feedId| CREATE | new comment added | user can see new comment posted under each post
 GET | /logout | READ | delete user cookies | user is logged out
 
-## Wireframes
+## Initial Wireframes
 ![Wireframes](./wireframes/wireframes.png)
 
 ## User Stories
