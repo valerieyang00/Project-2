@@ -75,18 +75,18 @@ GET | /logout | READ | delete user cookies | user is logged out
 ## Stretch goals accomplished
 * Create forms for posting reviews (for public) once user marks an activity as completed
 * Render 'reviews' feed page where all users' recommendation posts are displayed. Add filter by category
-* Add swipe functionality to activities page by category
 * Add social page where users can reach out to other users (search by location) for activities requiring multiple people (by using 'Participants' from API)
 * Add comments section for each social feed posted - create comment model 1:M to feeds
 * Extra functionalities in profile - change password (match old password, then update to new password encrypted), upload photo (during sign up) from local files, and have ability to update photo in profile
 
 
 ## Post-project reflection
-* Approach: I brainstormed about what kind of user experience might be beneficial with the simple "activity" information provided by the API. I thought of ideas such as progress logs for user's own benefit, reviews that benefit all users, and public feed with comments section that serves social networking aspect; then built models and associations for each functionality using ERDs and RESTful routing charts.
-
+Approach: I brainstormed about what kind of user experience might be beneficial with the simple "activity" information provided by the API. I thought of ideas such as progress logs for user's own benefit, reviews that benefit all users, and public feed with comments section that serves social networking aspect; then built models and associations for each functionality using ERDs and RESTful routing charts.
 * Takeaways: This project helped strengthen my understanding around RESTful API, CRUD operations, and working with databases using psql and sequelize. 
 
-* Stretch goal for future: Use another API (geoapify) for user to find eateries/things to do in selected location/area as bonus aspect in finding "what to do"
+Stretch goal for future:
+* Use another API (geoapify) for user to find eateries/things to do in selected location/area as bonus aspect in finding "what to do"
+* Add swipe functionality to activities page by category
 
 
 

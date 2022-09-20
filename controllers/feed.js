@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
     try {
         const feeds = await db.feed.findAll({
             order: [
-                ['createdAt', 'DESC'],
-                ['status', 'DESC']],
+                ['status', 'DESC'],
+                ['createdAt', 'DESC']],
             include: [db.activity, db.user, db.comment]
         })
         const comments = await db.comment.findAll({
