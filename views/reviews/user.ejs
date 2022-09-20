@@ -48,7 +48,16 @@
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
                                 <h5>
-                                    "<%= rec.title%>" (rating: <%=rec.rating%>) 
+                                    <% let star = null %>                  
+                                    "<%= rec.title%>"
+                                <% if(rec.rating === 1) { star = "⭐️" %>
+                                <% } else if (rec.rating === 2) { star = "⭐️⭐️"  %>
+                                <% }else if (rec.rating === 2) { star = "⭐️⭐️" %>
+                                <% }else if (rec.rating === 3) { star = "⭐️⭐️⭐️" %>
+                                <% }else if (rec.rating === 4) { star = "⭐️⭐️⭐️⭐️" %>
+                                <% }else if (rec.rating === 5) { star = "⭐️⭐️⭐️⭐️⭐️" %>
+                                <%} %>                                  
+                                <%=star%> <span style="margin-left: 0.5em">rating: <%=rec.rating%></span>
                                 </h5> 
                             <small class="card-text" style="margin-left: 2rem">
                                 <%= rec.resource%> <br></small>
