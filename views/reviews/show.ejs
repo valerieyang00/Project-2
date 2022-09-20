@@ -54,15 +54,15 @@
         <% if(activitytype==="all" ) {%>
             <% recs.forEach(rec=> {%>
                 <div class="d-flex justify-content-center">
-                    <div class="card" style="width: 50vw;">
-                        <div class="card-header">
+                    <div class="card" style="width: 55vw;">
+                        <div class="card-header" style="background-color:#D6EAF8">
                             <h5>
                                 "<%= rec.activity.activity%>" 
                                 <small class="d-flex justify-content-end text-muted">
                                     Posted by: <%= rec.user.name%></small>
                             </h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color:#EBF5FB">
                             <blockquote class="blockquote mb-0">
                                 <% let star = null %>
                                 <h5>
@@ -99,15 +99,15 @@
                     <% if(activitytype===rec.activity.type) { %>
                         <%arr.push(activitytype)%>
                                <div class="d-flex justify-content-center">
-                                <div class="card" style="width: 60vw;">
-                                    <div class="card-header">
+                                <div class="card" style="width: 55vw;">
+                                    <div class="card-header" style="background-color:#D6EAF8">
                                         <h5>
                                             "<%= rec.activity.activity%>" 
                                             <small class="d-flex justify-content-end text-muted">
                                                 Posted by: <%= rec.user.name%></small>
                                         </h5>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" style="background-color:#EBF5FB">
                                         <blockquote class="blockquote mb-0">
                                             <h5>
                                                 <% let star = null %>

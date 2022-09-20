@@ -2,7 +2,7 @@
     <div style="margin-left: 20vw">
         <form method="POST" action="/reviews/<%=rec.userId%>/<%=rec.id%>?_method=PUT" class="row g-3" style="width:50rem" class="row g-3" style="width:50rem">
             <div class="col-12">
-                    <label>Review:</label>
+                    <label>Review headline:</label>
                     <input hidden value="<%=rec.userId%>" name="userId">
                     <input class="form-control" type="text" name="title" value="<%=rec.title%>" required>
                 </div>

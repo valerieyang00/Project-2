@@ -52,7 +52,7 @@ router.post('/:userid/:activityid', async (req, res) => {
             content: req.body.content,
             rating: req.body.rating
         })
-        res.redirect(`/reviews/users/${req.params.userid}`)
+        res.redirect("/reviews/all")
     } catch (err) {
         console.log(err)
         res.send('server error')
