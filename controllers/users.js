@@ -170,13 +170,23 @@ router.put('/profile/:id', async (req, res) => {
     }
 })
 router.delete('/profile/:id', async (req, res) => {
-    try {
-        const deleteUser = await db.user.destroy({
+    try {const user = await db.user.findOne({
         where: {
-            id: req.params.id
-        }})
-        res.clearCookie('userId')
-        res.redirect('/')
+            id: res.locals.user.id
+        }
+    })
+        const msgFail = 'Current password is invalid.'
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
+        res.redirect(`/users/profile?message=${msgFail}`)
+    } else {
+        const deleteUser = await db.user.destroy({
+            where: {
+                id: req.params.id
+            }})
+            res.clearCookie('userId')
+            res.redirect('/')
+    }
+ 
     }catch(err) {
         console.log(err)
         res.send('server error')

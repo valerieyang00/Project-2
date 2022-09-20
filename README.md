@@ -12,10 +12,10 @@ I integrated the Bored API (http://www.boredapi.com/api/activity/) to bring in r
 
 ## Installation 
 * Fork and Clone repo to your local repository
-* Run `npm init -y` to initiate npm
+* Run `npm init -y` to initialize npm
 * Open the repo and navigate to `package.json` file and see a list of npm packages listed under `dependencies` 
-* Run `npm install` or `npm i` in the terminal to initiate download of all required npm packages. `node_modules` should appear in the folder.
-* Make sure `node_module` is in the `gitignore` file before committing to remote repository
+* Run `npm install` or `npm i` in the terminal to download of all required npm packages. `node_modules` should appear in the folder.
+* Make sure `node_modules` is in the `gitignore` file before committing to remote repository
 
 ## ERDs
 ![ERDs](./wireframes/ERDs.png)
@@ -29,6 +29,7 @@ I integrated the Bored API (http://www.boredapi.com/api/activity/) to bring in r
 | GET                  | /users/profile | READ | user information and photo | user can view their information and have option to - change photo, change password, and edit info
 | GET | /users/profile/:userId| READ | form to edit user info | user can update email/username/city/state
 | PUT | /users/profile/pw/:userId | UPDATE | update password | user can supply old password and new password to update
+| DELETE | /users/profile/pw/:userId | DESTROY | delete user | user is logged out and deleted from database
 PUT | /users/profile/photo/:userId | UPDATE | update profile photo| User can upload new photo for profile
 GET | /:type | READ | display activity by selected category from API | user can click add/next from this page on each activity displayed
 POST | /saved | CREATE | add activity to saved list | user can click "add" button to save activity 
@@ -71,18 +72,21 @@ GET | /logout | READ | delete user cookies | user is logged out
 * As a user, I want to be able to connect with other users in my area 
 
 
-## Stretch goals
+## Stretch goals accomplished
 * Create forms for posting reviews (for public) once user marks an activity as completed
 * Render 'reviews' feed page where all users' recommendation posts are displayed. Add filter by category
 * Add swipe functionality to activities page by category
 * Add social page where users can reach out to other users (search by location) for activities requiring multiple people (by using 'Participants' from API)
 * Add comments section for each social feed posted - create comment model 1:M to feeds
 * Extra functionalities in profile - change password (match old password, then update to new password encrypted), upload photo (during sign up) from local files, and have ability to update photo in profile
-* Use another API (geoapify) for user to find eateries/things to do in selected location/area as bonus aspect in finding "what to do"
+
 
 ## Post-project reflection
+* Approach: I brainstormed about what kind of user experience might be beneficial with the simple "activity" information provided by the API. I thought of ideas such as progress logs for user's own benefit, reviews that benefit all users, and public feed with comments section that serves social networking aspect; then built models and associations for each functionality using ERDs and RESTful routing charts.
 
+* Takeaways: This project helped strengthen my understanding around RESTful API, CRUD operations, and working with databases using psql and sequelize. 
 
+* Stretch goal for future: Use another API (geoapify) for user to find eateries/things to do in selected location/area as bonus aspect in finding "what to do"
 
 
 
