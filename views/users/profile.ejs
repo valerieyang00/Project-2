@@ -3,7 +3,7 @@
     <div class="card">
         <%if (image) {%>
             <img src="../<%=user.photo%>" class="card-img-top" alt="Photo" width="300" height="300"/>
-        <%}%>
+        <%} %>
         <div class="card-body" style="width: 25rem;">
             <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 change profile photo
@@ -80,35 +80,36 @@
                  <div class="text-center alert alert-success" role="alert"><%= message %></div> 
                  <%}%>
           </div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- modal that contains a form to delete user account by supplying correct password -->
-<div class="d-flex justify-content-center" style="margin-top: -3em">
-       <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-       delete account
-    </a>
-    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-       <div class="modal-dialog modal-dialog-centered">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel3">Are you sure?</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-               <form method="POST" action="/users/profile/<%=user.id%>?_method=DELETE" class="d-flex justify-content-center">
-                     <div class="form-group" style="width:15rem">
-                       <label for="password">Password:</label>
-                       <input class="form-control" id="password" type="password" placeholder="enter password" name="password">                        
-                    </div>
-                   </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-sm btn-danger">delete account</button>
+          <!-- modal that contains a form to delete user account by supplying correct password -->
+          <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+          delete account
+        </a>
+       <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </form>
-        </div>
+              <div class="modal-body">
+                  <form method="POST" action="/users/profile/<%=user.id%>?_method=DELETE" class="d-flex justify-content-center">
+                        <div class="form-group" style="width:15rem">
+                          <label for="password">Password:</label>
+                          <input class="form-control" id="password" type="password" placeholder="enter password" name="password">                        
+                       </div>
+                      </div>
+                      <div class="modal-footer">
+                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-sm btn-danger">delete account</button>
+                 </div>
+               </form>
+            </div>
+          </div>
+        <div>
+      </div>
+   </div>
+</div>
+
 
 
 
