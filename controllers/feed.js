@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-// const user = require('../models/user')
 const methodOverride = require("method-override")
 router.use(methodOverride("_method"))
 const { Op } = require("sequelize");
@@ -9,14 +8,16 @@ const { Op } = require("sequelize");
 router.get('/', async (req, res) => {
     try {
         const feeds = await db.feed.findAll({
+            // to display feeds with Open status always on top of Closed status, and also newer feeds on top
             order: [
-                ['status', 'DESC'],
+                ['status', 'DESC'], 
                 ['createdAt', 'DESC']],
             include: [db.activity, db.user, db.comment]
         })
         const comments = await db.comment.findAll({
             include: [db.feed, db.user]
         })
+            // to pass in number of logged-in user's feeds for the counter on "My Posts"
         const userFeeds = await db.feed.count({
             where: {
                 userId: res.locals.user.id
@@ -34,11 +35,13 @@ router.get('/all', async (req, res) => {
         const search = req.query.city
         const feeds = await db.feed.findAll({
             where: {
+                // to display any feeds that have location (city) similar to user search on navbar 'search by city'
                 city: {
                     [Op.iLike] : `%${search}%`
                 }
             },
             order: [
+                // to display feeds with Open status always on top of Closed status, and also newer feeds on top
                 ['createdAt', 'DESC'],
                 ['status', 'DESC']],
             include: [db.activity, db.user, db.comment]
@@ -46,6 +49,7 @@ router.get('/all', async (req, res) => {
         const comments = await db.comment.findAll({
             include: [db.feed, db.user]
         })
+                // to pass in number of logged-in user's feeds for the counter on "My Posts"
         const userFeeds = await db.feed.count({
             where: {
                 userId: res.locals.user.id
@@ -132,7 +136,7 @@ router.delete('/users/:userid/:feedid', async (req, res) => {
             where: {
                 id: req.params.feedid
             }})
-
+        // delete all comments associated with the feed being deleted in this route
         const commentDelete = await db.comment.destroy({
             where: {
                 feedId: req.params.feedid

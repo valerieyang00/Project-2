@@ -1,20 +1,20 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-// const user = require('../models/user')
 const methodOverride = require("method-override")
-// const activity = require('../models/activity')
 router.use(methodOverride("_method"))
 
 
 router.get('/:type', async (req, res) => {
     try {
         const recs = await db.recommendation.findAll({
+            // display newer reviews on top
             order: [['createdAt', 'DESC']],
             include: [db.activity, db.user]
         }
         )
         const type = req.params.type
+            // to pass in the number of logged-in users' reviews posted to display on 'my reviews'
         const userRecs = await db.recommendation.count({
             where: {
                 userId: res.locals.user.id

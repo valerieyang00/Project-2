@@ -7,8 +7,9 @@
 
     </style>
 </head>
-
+<!-- show page for each of the categories clicked from homepage. Showing data pulled from API under each category and give option to users to save to the list, or pass onto the next -->
 <div class="d-flex align-items-center justify-content-center" style="height:90vh">
+    <!-- check if user is logged in before displaying information -->
     <% if(user) { %>
         <div class="jumbotron">
             <h3 class="display-4 text-center">
@@ -21,9 +22,10 @@
             <div>
                 <ul>Participants: <%= data.participants%>
                 </ul>
-                <ul>                    
+                <ul>                  
                     Accessibility(scale 0-1)                    
                     <div class="btn-group dropend">
+                        <!-- description about 'accessibility' scale as provided on API -->
                         <button class="btn dropdown-toggle btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .8rem;">
                         <em>i</em>
                         </button>
@@ -35,6 +37,7 @@
                 </ul>
                 <ul>Price(scale 0-1)
                     <div class="btn-group dropend">
+                        <!-- description about 'price' scale as provided on API -->
                         <button class="btn dropdown-toggle btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .8rem;">
                           <em>i</em>
                         </button>
@@ -47,16 +50,16 @@
                 </div>   
                 <div class = "d-flex justify-content-center">
                     <div class="nav">
+                        <!-- to receive req.body as hidden form to add record to db.activity and display on user's saved list -->
                         <form action="/saved" method="POST">
                             <input hidden value="<%= data.participants%>" name="participants" />
                             <input hidden value="<%= data.accessibility%>" name="accessibility" />
                             <input hidden value="<%= data.price%>" name="price" />
                             <input hidden value="<%= data.activity%>" name="activity" />
                             <input hidden value="<%= type%>" name="type" />
-                            <button class="btn btn-primary" type="submit">Add</button>
-                
+                            <button class="btn btn-primary" type="submit">Add</button>                
                         </form>
-                
+                        <!-- to reload the page to show next activity when user passes -->
                         <form action="/<%=type%>" method="GET">
                             <button class="btn btn-secondary">Next</button>
                         </form>
@@ -64,6 +67,7 @@
                     
                 </div>            
                 <% if(message) { %>
+                    <!-- display a 'successfully added' message along with link to saved list when user adds an activity -->
                     <div class="d-flex justify-content-center">
                         <div class="alert alert-success" role="alert">
                             Successfully Saved! See list <a href="/saved/all">here</a> or
@@ -72,13 +76,13 @@
                     </div>
                         <%}%>
                             <%} else {%>
+                                <!-- display login or sign up message if user is not logged in -->
                                 <div class="d-flex align-items-center justify-content-center" style="height:90vh">
                                     <h5>
                                         Please <a href="/users/login"> login</a> to your account to continue
                                         <br>Don't have an account yet? <a href="/users/new"> Sign up</a>! 
                                     </h5>
-                                </div>
-                
+                                </div>                
                                 <%}%>
             </div>
         </div>

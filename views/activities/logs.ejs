@@ -1,4 +1,4 @@
-
+<!-- show page for logs for each activity -->
 
 <div id="saved_section" style="margin-left: 5vw">
 <a href="/saved/all">back to list</a>
@@ -13,8 +13,8 @@
           </button>
         </li>
           <form method="POST" action ="/saved/logs/<%=activity.id%>/<%=log.id%>/?_method=DELETE">
-            <button class="btn btn-secondary btn-sm" type="submit" style="margin-right: 0.8rem">delete</button>
-        </form>
+          <button class="btn btn-secondary btn-sm" type="submit" style="margin-right: 0.8rem">delete</button>
+          </form>
         <small class="text-muted" style="margin-top: 0.6em"><%= moment(log.createdAt).fromNow()%></small>
       </div>
 <%})%>
@@ -29,11 +29,9 @@
     <div class="col-12">
       <label for="content">Content:</label>
       <textarea type="text" class="form-control" name="content" required></textarea>
-    </div>
-  
+    </div>  
     <input type="submit" class="btn btn-primary">
   </form>
-
 </div>
 
   

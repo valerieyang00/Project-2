@@ -1,4 +1,5 @@
 
+<!-- form to edit logs previously posted -->
 <div id="saved_section" style="margin-left:5vw">
     <form method="POST" action="/saved/logs/<%=log.activityId%>/<%=log.id%>?_method=PUT" class="row g-3" style="width:50rem">
         <div class="col-12">
@@ -8,8 +9,7 @@
           <div class="col-12">
             <label for="content">Content:</label>
             <textarea type="text" class="form-control" name="content" required><%=log.content%></textarea>
-          </div>
-        
+          </div>        
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
     </div>

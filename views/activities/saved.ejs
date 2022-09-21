@@ -7,7 +7,7 @@
     </style>
 </head>
 
-
+<!-- show page for /saved/all, /saved/tostart, /saved/inprogress, /saved/completed -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" style="margin-left: 2vw" href="#"><h3>View By Status:</h3></a>
@@ -24,23 +24,22 @@
                 <li><a class="dropdown-item" href="/saved/tostart">Not Yet Started</a></li>
                 <li><a class="dropdown-item" href="/saved/inprogress">In Progress</a></li>
                 <li><a class="dropdown-item" href="/saved/completed">Completed</a></li>
-                <li><a class="dropdown-item" href="/saved/all">All</a></li>
-                           
+                <li><a class="dropdown-item" href="/saved/all">All</a></li>                           
             </ul>
-
-    </ul>
-
-</div>
+        </ul>
+    </div>
 </div>
 </nav>
-
+<!-- countSaved is count of user's saved items. To display a message if count is zero -->
 <% if (countSaved !== 0) { %>
-
     <div id = "content">
+        <!-- for /saved/all or /saved/tostart -->
         <% if(param === "all" || param === "tostart") { %>
+        <!-- number incrementer to assign individual id's through forEach iteration (to collapse/uncollapse individual list item) -->
         <% let num=0 %>
         <h4 id="saved_section">Not Yet Started:</h4>
         <% saved.forEach(save => { %>
+        <!-- to display items for specific user -->
         <% if(user.id === save.userId) {%>
             <% if(!save.in_progress) {%>
                 <div class="accordion accordion-flush" id="accordionFlushExample_<%= num %>">
@@ -61,34 +60,32 @@
                                               <input hidden value="in_progress" name="name">
                                               <button style="margin-top:-3.2em" type="submit" class="btn btn-link">In Progress</button>
                                           </form>
-                                      </a>
                                         </li>
                                         <li class="breadcrumb-item">
                                             <form method="POST" action="/saved/<%=save.id%>/?_method=PUT">
                                                 <input hidden value="completed" name="name">
                                                 <button style="margin-top:-3.2em" type="submit" class="btn btn-link">Completed</button>
                                             </form>
-                                        </a>
-                                        </li>
+                                          </li>
                                     </ol>
                                   </nav>         
                             </div>
+                            <!-- to display option to post in MeetUp if the activity's participant is 2 or more -->
                             <% if(save.participants > 1) {%>
                                 <li>
                                     Post in <a href="/feed/new/<%=save.id%>">MeetUp</a> to invite others
                                 </li>
                                 <%}%>
-    
-                                      <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
-                                          <button style="margin-top:1em" type="submit" class="btn btn-danger btn-sm">delete</button>
-                                      </form>
+                                <form method="POST" action ="/saved/<%= save.id%>/?_method=DELETE">
+                                <button style="margin-top:1em" type="submit" class="btn btn-danger btn-sm">delete</button>
+                                </form>
                         </div>
                       </div>
                     </div>
-            <%}}%> 
+                 <%}}%> 
             <%num++;%>       
         <%})}%>
-    
+        <!-- for /saved/all or /saved/inprogress -->    
         <% if(param === "all" || param === "inprogress") { %>
         <% let num = 0 %>
         <h4 id="saved_section">In Progress:</h4>
@@ -131,12 +128,12 @@
                         </div>
                       </div>
                     </div>
-            <%}}%>   
+                <%}}%>   
             <%num++;%>     
         <%})}%>
-    
+        <!-- for /saved/all or /saved/completed -->  
         <% if(param === "all" || param === "completed") { %>
-            <% let num = 0 %>
+        <% let num = 0 %>
         <h4 id="saved_section">Completed: </h4>
         <% saved.forEach(save => { %>
             <% if(user.id === save.userId) {%>
@@ -165,14 +162,11 @@
                         </div>
                       </div>
                     </div>
-            <%}}%>   
+                <%}}%>   
             <%num++;%>     
         <%})}%>
     </div>
-    
-    <footer>
-    
-    </footer>
+<!-- message if user has not saved any activities yet -->
 <%} else { %>
     <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">
         <h5>Nothing Saved Yet!</h5>

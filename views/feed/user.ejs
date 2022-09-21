@@ -61,7 +61,7 @@
                         <%})%>
                         <%=commentArr.length%> comments</strong></a></span>
                         <div>
-                            <span class="badge rounded-pill text-bg-secondary">
+                            <span class="badge rounded-pill text-bg-info">
                                 <a class="btn btn-sm" type="button" href="/feed/edit/<%=feed.id%>">edit</a>
                             </span>
                             <span class="badge rounded-pill text-bg-danger">
@@ -73,18 +73,18 @@
                     </div>
                   </div>
                   <div class="collapse" id="collapseExample<%=num%>">
-                      <div class="card card-body" style="width: 55vw;">                  
+                      <div class="card card-body" style="width: 55vw;background-color:#F7F7F7">                  
                           <% comments.forEach(comment => {%>
                               <% if(feed.id === comment.feedId) { %>
                                   <div class="d-flex justify-content-between">
-                                      <p><%=comment.user.name%>: <%=comment.content%></p> 
+                                      <p><span style="color:darkblue;"><%=comment.user.name%></span>: <%=comment.content%></p> 
                                           <small class="text-muted"><%= moment(comment.createdAt).fromNow()%></small>
                                   </div>
                               <%}%>          
                           <%})%>
                       </div>
                     </div>
-                    <div class="card card-body" style="width: 55vw;">
+                    <div class="card card-body" style="width: 55vw; background-color:#F0FAFC">
                       <form method="POST" action="/feed/comments/<%=feed.id%>" class="row g-3 align-items-center">
                               <div class="col-md-10">
                                   <input hidden value="<%=user.id%>" name="userId">

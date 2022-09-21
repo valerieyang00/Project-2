@@ -1,9 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-// const user = require('../models/user')
 const methodOverride = require("method-override")
-// const activity = require('../models/activity')
 router.use(methodOverride("_method"))
 
 router.get('/:status', async (req, res) => {
@@ -13,6 +11,7 @@ router.get('/:status', async (req, res) => {
             where: {
                 userId: res.locals.user.id
         }})
+        // to pass in status of each activity to enable filter by status on navbar
         const param = req.params.status
         let status = null
         function change() {
@@ -162,7 +161,7 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        console.log(req.body)
+        //to update in_progress/completed booleans according to user's choice to mark in progress or completed
         if (req.body.name === "completed") {
             const completed = await db.activity.update({
                 completed: true,

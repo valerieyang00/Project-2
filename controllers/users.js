@@ -159,7 +159,6 @@ router.put('/profile/:id', async (req, res) => {
             email: req.body.email,
             city: req.body.city,
             state: req.body.state,
-            photo: req.body.photo
         }, {where: {
             id: req.params.id
         }})
@@ -170,11 +169,13 @@ router.put('/profile/:id', async (req, res) => {
     }
 })
 router.delete('/profile/:id', async (req, res) => {
-    try {const user = await db.user.findOne({
+    try {
+        const user = await db.user.findOne({
         where: {
             id: res.locals.user.id
         }
     })
+        // check user's current password before proceeding to deletion of user account
         const msgFail = 'Current password is invalid.'
         if (!bcrypt.compareSync(req.body.password, user.password)) {
         res.redirect(`/users/profile?message=${msgFail}`)
@@ -200,6 +201,7 @@ router.put('/profile/photo/:id/', async (req, res) => {
                 id: res.locals.user.id
             }
         })
+        // if file was uploaded, update user photo to new file in req.files
         if (req.files) {
             const photo = req.files.photo
             const filePath = path.join(__dirname, '..', "files", photo.name)
@@ -213,6 +215,7 @@ router.put('/profile/photo/:id/', async (req, res) => {
             }})
             res.redirect('/users/profile')
         } else {
+            // if no req.files available from req, route to profile page with error message
             res.redirect('/users/profile?message=new photo was not uploaded. try again')
         }
 
@@ -230,6 +233,7 @@ router.put('/profile/pw/:id/', async (req, res) => {
                 id: res.locals.user.id
             }
         })
+        // check current password before updating password to new password supplied from form
         const msgFail = 'Current password is invalid.'
         const msgSuccess = 'Password reset successful'
         if (!bcrypt.compareSync(req.body.oldpw, user.password)) {
