@@ -6,7 +6,7 @@
         }
     </style>
 </head>   
-
+<!-- display all posts posted by logged-in user -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid" style="margin-left: 2vw">
         <div class="navbar-brand">
@@ -27,9 +27,8 @@
 <ul style="margin-left: 2vw">
     <li> Visit your <a href="/saved/all">saved</a> activity list to write a new post</li>
     </ul>
-
+<!-- if user has at least 1 posted feed, and is logged-in -->
 <% if(userFeeds !== 0) { %>
-
     <% if(user) {%>
         <% let num = 0 %>
         <div id="saved_section">
@@ -95,16 +94,15 @@
                                   <button class="form-control btn btn-sm btn-info" type="submit">Post</button>
                               </div>
                           </div>
-                      </form>
-       
+                      </form>       
                   </div> 
                </div>   
-               <% num++;%>
-                <%})%>
+            <% num++;%>
+            <%})%>
         </div>
     </div>
-         <%}%>     
-
+<%}%>     
+<!-- if user does not have any feed posted, display message -->
 <%} else {%>
     <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">
         <h5>No Posts Yet!</h5>

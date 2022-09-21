@@ -2,12 +2,12 @@
     <style>
         body {
             background-image: url("../image.jpg");
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             background-size: 100% 100%
         }
     </style>
 </head>   
-
+<!-- navbar to filter reviews by each category -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid" style="margin-left: 2vw">
         <a class="navbar-brand" href="#"><h3>Reviews by Category:</h3></a>
@@ -34,22 +34,19 @@
                         <li><a class="dropdown-item" href="/reviews/busywork">busywork</a></li>
                         <li><a class="dropdown-item" href="/reviews/all">all</a></li>
                     </ul>
-
-            </ul>
-            
+            </ul>        
         </div>
         <li class="nav-link">
             <div class=" d-flex justify-content-end">
                 <a class="btn" role="button" href="/reviews/users/<%=user.id%>" style="margin-left:1em"><strong>My Reviews</strong><span class="badge text-bg-warning" style="margin-left:0.2em">
+                    <!-- counter for user's reviews posted -->
                     <%= userRecs %>
                 </span></a>
             </div>
         </li>
     </div>
 </nav>
-
-
-
+<!-- for /feed route -->
     <div id="saved_section">
         <% if(activitytype==="all" ) {%>
             <% recs.forEach(rec=> {%>
@@ -79,8 +76,7 @@
                             <small class="card-text" style="margin-left: 2rem">
                                 <%= rec.resource%> <br></small>
                             <small class="card-text" style="margin-left: 2rem">
-                                <%= rec.content%>
-                            </small>      
+                                <%= rec.content%></small>      
                                 <div class="d-flex justify-content-end">
                                       <cite title="date">
                                           <small class="text-muted"> 
@@ -88,11 +84,11 @@
                                       </cite>                                
                                 </div>
                             </div>
-                            <%})}%>
+                        </div>
                     </div>
                 </div>
-            </div>
-    
+            <%})}%>
+    <!-- arr to see if there are reviews posted for each category, if arr is empty, "no reviews yet" message will show on page -->
             <%let arr =[]%>
             <% if(activitytype !== "all" ) {%>
                 <% recs.forEach(rec=> {%>
@@ -109,10 +105,9 @@
                                     </div>
                                     <div class="card-body" style="background-color:#EBF5FB">
                                         <blockquote class="blockquote mb-0">
-                                            <h5>
-                                                <% let star = null %>
-                  
-                                    "<%= rec.title%>"
+                                        <h5>
+                                            <% let star = null %>                  
+                                            "<%= rec.title%>"
                                 <% if(rec.rating === 1) { star = "⭐️" %>
                                 <% } else if (rec.rating === 2) { star = "⭐️⭐️"  %>
                                 <% }else if (rec.rating === 2) { star = "⭐️⭐️" %>
@@ -121,13 +116,11 @@
                                 <% }else if (rec.rating === 5) { star = "⭐️⭐️⭐️⭐️⭐️" %>
                                 <%} %>                                  
                                 <%=star%> <span style="margin-left: 0.5em">rating: <%=rec.rating%></span>
-                                </h5>  
-                                 
+                                    </h5>                                   
                                         <small class="card-text" style="margin-left: 2rem">
                                             <%= rec.resource%> <br></small>
                                         <small class="card-text" style="margin-left: 2rem">
-                                            <%= rec.content%>
-                                        </small>      
+                                            <%= rec.content%></small>      
                                             <div class="d-flex justify-content-end">
                                                   <cite title="date">
                                                       <small class="text-muted"> 
@@ -135,12 +128,11 @@
                                                   </cite>                                
                                             </div>
                                         </div>
-                                                               </div>
                                     </div>
-                                    </div>   
- 
-                                    <%}})}%>
-
+                                </div>
+                            </div>    
+                    <%}})}%>
+<!-- if arr is empty on page by category, display message -->
 <% if(activitytype !== "all" ) {%>
     <%if(arr.length === 0) {%>
         <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">

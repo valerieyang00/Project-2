@@ -1,3 +1,4 @@
+<!-- user profile displayed -->
 <div class="container d-flex justify-content-center align-items-center" style="height: 60vh">
     <div class="card">
         <%if (image) {%>
@@ -11,6 +12,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
+                      <!-- modal that contains a PUT form for user to upload a new profile photo -->
                       <h5 class="modal-title" id="exampleModalLabel">Upload new photo</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -19,11 +21,9 @@
                             <div class="form-group" style="width:25rem">
                                 <label for="photo">New photo:</label>
                                 <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="inputGroupFile02" name="photo">
-                                    
-                                </div>              
-           
-                                </div>
+                                    <input type="file" class="form-control" id="inputGroupFile02" name="photo">                                    
+                                </div>           
+                            </div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -33,7 +33,6 @@
                     </div>
                 </div>
             </div>
-
           <h5 class="card-title" style="margin-top:1.5em">Welcome!</h5>
           <h6 class="card-subtitle mb-2 text-muted"><%=user.name%></h6>
           <ul class="card-text">
@@ -55,27 +54,26 @@
                        <h5 class="modal-title" id="exampleModalLabel2">Change Password</h5>
                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
+                     <!-- modal that contains a form to change password by supplying old password and new password -->
                      <div class="modal-body">
                          <form method="POST" action="/users/profile/pw/<%=user.id%>/?_method=PUT" class="d-flex justify-content-center">
                              <div class="form-group" style="width:15rem">
                                  <label for="oldpw">Current password:</label>
-                                 <input class="form-control" id="password" type="password" placeholder="old password" name="oldpw">
-                                 
+                                 <input class="form-control" id="password" type="password" placeholder="old password" name="oldpw">                                 
                                  <label for="newpw">New password:</label>
-                                 <input class="form-control" id="password" type="password" placeholder="new password" name="newpw">                             
-            
-                                 </div>
+                                 <input class="form-control" id="password" type="password" placeholder="new password" name="newpw">                          
+                              </div>
                              </div>
                              <div class="modal-footer">
                                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
                                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                              </div>
-                         </form>
-                     
+                         </form>                     
                      </div>
                    </div>
                  </div>
                </div>
+               <!-- if photo upload or password change fails due to incorrect information on forms, display fail message, if not, display success message -->
                <% if(message === msgFail) { %>
                  <div class="text-center alert alert-danger" role="alert"><%= message %></div>                    
              <%} else if(message === msgSuccess) {%>
@@ -86,6 +84,7 @@
     </div>
 </div>
 </div>
+<!-- modal that contains a form to delete user account by supplying correct password -->
 <div class="d-flex justify-content-center" style="margin-top: -3em">
        <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal3">
        delete account
@@ -101,16 +100,15 @@
                <form method="POST" action="/users/profile/<%=user.id%>?_method=DELETE" class="d-flex justify-content-center">
                      <div class="form-group" style="width:15rem">
                        <label for="password">Password:</label>
-                       <input class="form-control" id="password" type="password" placeholder="enter password" name="password">                         
-  
-                       </div>
+                       <input class="form-control" id="password" type="password" placeholder="enter password" name="password">                        
+                    </div>
                    </div>
-                   <div class="modal-footer">
-                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                     <button type="submit" class="btn btn-sm btn-danger">delete account</button>
-                   </div>
-               </form>
-</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-sm btn-danger">delete account</button>
+              </div>
+            </form>
+        </div>
 
 
 

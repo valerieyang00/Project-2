@@ -2,12 +2,12 @@
     <style>
         body {
             background-image: url("../image.jpg");
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             background-size: 100% 100%
         }
     </style>
 </head>   
-
+<!-- navbar includes Search option, to search by city in db.feed for feed/all?city=userSearch-->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <div class="d-flex justify-content-start">
@@ -27,9 +27,10 @@
         </li>
     </div>
 </nav>
-
+<!-- if there are feeds to display that meets the user Search criteria, display all results -->
 <% if(feeds.length !== 0) {%>
     <h3 style="margin-left: 3vw" id="space">Search Results for "<%=search%>" </h3>
+    <!-- num variable incrementer used to assign specific ids to each iteration of comments, to make accordion work individually -->
     <% let num = 0 %>
     <div id="saved_section">
         <% feeds.forEach(feed => {%>
@@ -55,6 +56,7 @@
                   <div class="card-body d-flex justify-content-end">
                       <span class="badge rounded-pill text-bg-warning">
                       <a class="btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample<%=num%>" aria-expanded="false" aria-controls="collapseExample<%=num%>"><strong>View all
+                        <!-- commentArr array used to count/increment comments on each feed and display -->
                         <% let commentArr = [] %>
                         <%feed.comments.forEach(comment =>{%>
                             <%commentArr.push(comment.id)%>
@@ -62,7 +64,8 @@
                         <%=commentArr.length%> comments</strong></a></span>
                     </div>
                   <div class="collapse" id="collapseExample<%=num%>">
-                      <div class="card card-body" style="width: 55vw;background-color:#F7F7F7">                
+                      <div class="card card-body" style="width: 55vw;background-color:#F7F7F7">   
+                        <!-- display comments for each feed  -->
                           <% comments.forEach(comment => {%>
                               <% if(feed.id === comment.feedId) { %>
                                   <div class="d-flex justify-content-between">
@@ -74,6 +77,7 @@
                       </div>
                     </div>
                     <div class="card card-body" style="width: 55vw; background-color:#F0FAFC">
+                        <!-- form to post comment on each feed -->
                       <form method="POST" action="/feed/comments/<%=feed.id%>" class="row g-3 align-items-center">
                               <div class="col-md-10">
                                   <input hidden value="<%=user.id%>" name="userId">
@@ -88,10 +92,10 @@
                   </div>
                </div>    
                <%num++;%>
-                <%})%>
-            </div>
-
+            <%})%>
+        </div>
  </div>
+ <!-- if there are no results to display that meets user Search criteria -->
 <%} else {%>
         <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">
             <h3 style="margin-left: 3vw" id="space">No Results for "<%=search%>"</h3>

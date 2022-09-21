@@ -1,8 +1,7 @@
+<!-- form for new post on MeetUp page -->
 <div id="saved_section" style="margin-left: 3vw">
-
     <h4>Invite Others to Your Activity:</h4>
-    <h5>"<%= activity.activity %>"</h5>
-    
+    <h5>"<%= activity.activity %>"</h5>    
     <div style="margin-left: 20vw">
         <form method="POST" action="/feed/<%=activity.id%>" class="row g-3" style="width:50rem">
             <div class="col-12">
@@ -38,8 +37,5 @@
                 </div>
             </div>
         </form>
-    </div>
-    
-    
-
+    </div>  
 </div>    

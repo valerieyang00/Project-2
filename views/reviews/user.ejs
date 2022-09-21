@@ -7,7 +7,7 @@
     </style>
 </head>   
 
-
+<!-- page to display only logged-in user's reviews -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid" style="margin-left: 2vw">
         <div class="navbar-brand">
@@ -30,9 +30,8 @@
 <li> Visit your <a href="/saved/completed">completed</a> activity list to write a new review</li>
 </ul>
 
-
+<!-- userRecs is count of reviews posted by logged-in user -->
 <%if(userRecs !== 0) {%>
-
     <div id="saved_section">
          <% if(user) {%>
             <% recs.forEach(rec=> {%>
@@ -71,22 +70,24 @@
                                       </cite>                                
                                 </div>
                             </div>
-
                             <div class="card-footer d-flex justify-content-end" style="height: 3rem; background-color:#EBF5FB">
+                            <!-- button to edit review -->
                             <span class="badge rounded-pill text-bg-info">
                             <a class="btn btn-sm" type="button" href="/reviews/edit/<%=rec.id%>">edit</a>
                             </span>
+                            <!-- button to delete review -->
                             <span class="badge rounded-pill text-bg-danger">                  
                             <form method="POST" action ="/reviews/users/<%= rec.userId%>/<%=rec.id%>?_method=DELETE">
                             <button class="btn btn-sm" type="submit">delete</button>
                             </form>
                             </span>
                             </div>
-                            <%})}%>
+                        </div>
                     </div>
                 </div>
-                    </div>
-                </div>
+            </div>
+        <%})}%>
+<!-- if userRec = 0, display message -->
 <%} else {%>
     <div class="d-flex align-items-center justify-content-center" style ="height: 50vh">
         <h5>No Reviews Yet!</h5>
