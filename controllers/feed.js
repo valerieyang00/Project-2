@@ -42,8 +42,8 @@ router.get('/all', async (req, res) => {
             },
             order: [
                 // to display feeds with Open status always on top of Closed status, and also newer feeds on top
-                ['createdAt', 'DESC'],
-                ['status', 'DESC']],
+                ['status', 'DESC'], 
+                ['createdAt', 'DESC']],
             include: [db.activity, db.user, db.comment]
         })
         const comments = await db.comment.findAll({
@@ -99,6 +99,9 @@ router.get('/users/:userid', async (req, res) => {
             where: {
                 userId: req.params.userid
             },
+            order: [
+                ['status', 'DESC'], 
+                ['createdAt', 'DESC']],
             include: [db.activity, db.user, db.comment]
         })
         const userFeeds = await db.feed.count({
