@@ -19,8 +19,6 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
     //create a new user
     try {
-        console.log(req.body)
-        console.log(req.files.photo)
         // have to hash the password before creating new user
         const hashedPW = bcrypt.hashSync(req.body.password, 12)
         const [newUser, created] = await db.user.findOrCreate({
@@ -32,9 +30,7 @@ router.post('/', async (req, res) => {
                 name: req.body.name,
                 city: req.body.city,
                 state: req.body.state,
-                photo: req.files.photo.name
-            }
-  
+            }  
         })
         // if the user was found.... send them to login and let them know they already have an account
         if (!created) {
@@ -53,6 +49,11 @@ router.post('/', async (req, res) => {
                 photo.mv(filePath, (err) => {
                     console.log(err)
                 })
+                const addPhoto = await db.user.update({
+                    photo: req.files.photo.name
+                }, {where: {
+                    email: req.body.email
+                }})
             }
             res.redirect('users/profile')
         }
